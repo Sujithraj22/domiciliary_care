@@ -9,7 +9,7 @@ class Work {
 
 List<Work> works = <Work>[
   const Work(title: 'Medication', icon: Icons.medication_rounded),
-  const Work(title: 'Body Map', icon: Icons.man_2_rounded),
+  const Work(title: 'Body Map', icon: Icons.accessibility_new_rounded),
   const Work(title: 'Food', icon: Icons.map),
   const Work(title: 'Drinks', icon: Icons.phone),
   const Work(title: 'Personal care', icon: Icons.camera_alt),
@@ -31,19 +31,27 @@ class SelectWork extends StatelessWidget {
   Widget build(BuildContext context) {
     const TextStyle textStyle =
     TextStyle(fontSize: 16, fontWeight: FontWeight.bold,);
-    return Card(
-      color: Colors.white,
-      child: Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
+    return GestureDetector(
+      onTap: cardFunction,
+      child: Card(
+        color: Colors.white,
+        child: Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
 
-              Icon(work.icon, size: 45.0, color: Colors.black),
-              const SizedBox(height: 10),
-              Text((work.title).toString(), style: textStyle),
-            ]),
+                Icon(work.icon, size: 45.0, color: Colors.black),
+                const SizedBox(height: 10),
+                Text((work.title).toString(), style: textStyle),
+              ]),
+        ),
       ),
     );
+  }
+
+  Color  cardFunction(){
+    Color cardColor = Colors.white;
+    return cardColor;
   }
 }
