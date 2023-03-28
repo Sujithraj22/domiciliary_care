@@ -13,8 +13,6 @@ class _VisitingScreenState extends State<VisitingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
           //grid view
           body:SafeArea(
             child: Column(
