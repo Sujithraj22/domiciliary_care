@@ -29,7 +29,7 @@ class SelectWork extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle =
+    const TextStyle textStyle =
     TextStyle(fontSize: 16, fontWeight: FontWeight.bold,);
     return Card(
       color: Colors.white,
@@ -40,7 +40,7 @@ class SelectWork extends StatelessWidget {
             children: <Widget>[
 
               Icon(work.icon, size: 45.0, color: Colors.black),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Text((work.title).toString(), style: textStyle),
             ]),
       ),
