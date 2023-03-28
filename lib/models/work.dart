@@ -13,6 +13,7 @@ List<Work> works = <Work>[
   const Work(title: 'Food', icon: Icons.map),
   const Work(title: 'Drinks', icon: Icons.phone),
   const Work(title: 'Personal care', icon: Icons.camera_alt),
+  const Work(title: 'Toilet assistance', icon: Icons.settings),
   const Work(title: 'Repositioning', icon: Icons.settings),
   const Work(title: 'Companionship / respite care', icon: Icons.photo_album),
   const Work(title: 'Laundry', icon: Icons.wifi),
@@ -29,7 +30,7 @@ class SelectWork extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextStyle textStyle =
-    TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
+    TextStyle(fontSize: 16, fontWeight: FontWeight.bold,);
     return Card(
       color: Colors.white,
       child: Center(
@@ -38,7 +39,7 @@ class SelectWork extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
 
-              Icon(work.icon, size: 50.0, color: Colors.black),
+              Icon(work.icon, size: 45.0, color: Colors.black),
               SizedBox(height: 10),
               Text((work.title).toString(), style: textStyle),
             ]),

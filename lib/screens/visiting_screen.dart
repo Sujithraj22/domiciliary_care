@@ -13,27 +13,30 @@ class _VisitingScreenState extends State<VisitingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // body: SafeArea(
-      //   child: Column(children: [
-      //     const Text(
-      //       'How have you helped John?',
-      //       style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      //     ),
+
 
           //grid view
-          body:GridView.count(
-            crossAxisCount: 2,
-            crossAxisSpacing: 4.0,
-            mainAxisSpacing: 8.0,
-            children: List.generate(works.length, (index) {
-              return Center(
-                child: SelectWork(work: works[index]),
-              );
-            }),
+          body:SafeArea(
+            child: Column(
+              children: [
+                Text('How have you helped John?'),
+                Expanded(
+                  child: GridView.count(
+                    shrinkWrap: true,
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 4.0,
+                    mainAxisSpacing: 8.0,
+                    children: List.generate(works.length, (index) {
+                      return SelectWork(work: works[index]);
+                    }),
 
          // ),
        // ]),
       ),
+                ),
+              ],
+            ),
+          ),
     );
   }
 }
