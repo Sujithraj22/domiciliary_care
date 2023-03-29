@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../models/smileyIcons.dart';
 import '../models/work.dart';
+
+Color? iconColor1;
+Color? iconColor2;
+Color? iconColor3;
+Color? iconColor4;
+Color? iconColor5;
 
 class VisitingScreen extends StatefulWidget {
   const VisitingScreen({Key? key}) : super(key: key);
@@ -51,36 +58,86 @@ class _VisitingScreenState extends State<VisitingScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+
+                    smileyIcon(color: iconColor1, icon: ,),
                     Expanded(
                       child: IconButton(
-                        color: Colors.yellow,
-                        onPressed: () {},
-                        icon: const Icon(Icons.sentiment_very_dissatisfied_outlined,
+                        color: iconColor1,
+                        onPressed: () {
+                          setState(() {
+                            if (iconColor1 == Colors.green) {
+                              iconColor1 = Colors.grey;
+                            } else {
+                              iconColor1 = Colors.green;
+                            }
+                          });
+                        },
+                        icon: const Icon(
+                            Icons.sentiment_very_dissatisfied_rounded,
                             size: 50),
                       ),
                     ),
                     Expanded(
                       child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.sentiment_dissatisfied, size: 50),
+                        color: iconColor2,
+                        onPressed: () {
+                          setState(() {
+                            if (iconColor2 == Colors.green) {
+                              iconColor2 = Colors.grey;
+                            } else {
+                              iconColor2 = Colors.green;
+                            }
+                          });
+                        },
+                        icon:
+                            const Icon(Icons.sentiment_dissatisfied, size: 50),
                       ),
                     ),
                     Expanded(
                       child: IconButton(
-                        onPressed: () {},
+                        color: iconColor3,
+                        onPressed: () {
+                          setState(() {
+                            if (iconColor3 == Colors.green) {
+                              iconColor3 = Colors.grey;
+                            } else {
+                              iconColor3 = Colors.green;
+                            }
+                          });
+                        },
                         icon: const Icon(Icons.sentiment_neutral, size: 50),
                       ),
                     ),
                     Expanded(
                       child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.sentiment_satisfied_alt, size: 50),
+                        color: iconColor4,
+                        onPressed: () {
+                          setState(() {
+                            if (iconColor4 == Colors.green) {
+                              iconColor4 = Colors.grey;
+                            } else {
+                              iconColor4 = Colors.green;
+                            }
+                          });
+                        },
+                        icon:
+                            const Icon(Icons.sentiment_satisfied_alt, size: 50),
                       ),
                     ),
                     Expanded(
                       child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.sentiment_very_satisfied, size: 50),
+                        color: iconColor5,
+                        onPressed: () {
+                          setState(() {
+                            if (iconColor5 == Colors.green) {
+                              iconColor5 = Colors.grey;
+                            } else {
+                              iconColor5 = Colors.green;
+                            }
+                          });
+                        },
+                        icon: const Icon(Icons.sentiment_very_satisfied,
+                            size: 50),
                       ),
                     ),
                   ],
