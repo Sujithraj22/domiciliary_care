@@ -41,7 +41,7 @@ class SelectWork extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(4)),
           borderSide: BorderSide(color: Colors.purple),
         ),
-        color: cardFunction(),
+        //color: cardFunction(),
         child: Center(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +59,9 @@ class SelectWork extends StatelessWidget {
   Color cardFunction() {
     Color cardColor = Colors.white;
 
-    if (work.title == 'Medication') {}
+    if (work.title == 'Medication') {
+      print('medications');
+    }
 
     return cardColor;
   }

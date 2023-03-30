@@ -27,7 +27,7 @@ class _smileyIconState extends State<smileyIcon> {
           });
         },
         icon: const Icon(
-            Icons.$iconName.toString(),
+            Icons.add,
             size: 50),
       ),
     );
