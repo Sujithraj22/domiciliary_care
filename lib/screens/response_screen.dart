@@ -2,16 +2,14 @@ import 'package:domiciliary_care/constants/color.dart';
 import 'package:domiciliary_care/screens/visiting_screen.dart';
 import 'package:flutter/material.dart';
 
-class ResponsePage extends StatefulWidget {
-  const ResponsePage({Key? key}) : super(key: key);
+class ResponsePage extends StatelessWidget {
+  final String workName;
 
-  @override
-  State<ResponsePage> createState() => _ResponsePageState();
-}
+   const ResponsePage({Key? key, required this.workName}) : super(key: key);
 
-class _ResponsePageState extends State<ResponsePage> {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -19,30 +17,40 @@ class _ResponsePageState extends State<ResponsePage> {
           padding: const EdgeInsets.only(left: 25, right: 25),
           child: Column(
             children: [
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Personal care',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      workName,
+                      //overflow: TextOverflow.visible,
+                      style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    ),
                   ),
-                  const Spacer(),
+
+                 // SizedBox(width: 40),
                   IconButton(
+                    padding: EdgeInsets.zero,
+                    constraints: BoxConstraints(),
                     onPressed: () {
                       // print('close button');
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: ((context) => VisitingScreen()),
+                          builder: ((context) => const VisitingScreen()),
                         ),
                       );
                     },
                     icon: const Icon(
+                      
                       Icons.close,
                       size: 30,
                     ),
                   ),
                 ],
               ),
+              SizedBox(height: 10),
               const TextField(
                 keyboardType: TextInputType.text,
                 maxLines: 27,
@@ -65,7 +73,9 @@ class _ResponsePageState extends State<ResponsePage> {
                     borderRadius: BorderRadius.circular(25),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+
+                },
                 child: const Text('Save'),
               ),
             ],

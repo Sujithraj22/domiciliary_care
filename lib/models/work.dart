@@ -38,7 +38,7 @@ class SelectWork extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: ((context) => ResponsePage()),
+            builder: ((context) => ResponsePage(workName: work.title.toString())),
           ),
         );
       },
@@ -62,11 +62,5 @@ class SelectWork extends StatelessWidget {
     );
   }
 
-  void cardFunction() {
-    Color cardColor = Colors.white;
 
-    if (work.title == 'Medication') {
-      print('Medication');
-    }
-  }
 }
