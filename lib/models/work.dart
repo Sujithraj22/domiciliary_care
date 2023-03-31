@@ -1,3 +1,4 @@
+import 'package:domiciliary_care/screens/response_screen.dart';
 import 'package:flutter/material.dart';
 
 class Work {
@@ -20,13 +21,12 @@ List<Work> works = <Work>[
   const Work(title: 'Groceries', icon: Icons.wifi),
   const Work(title: 'Housework', icon: Icons.wifi),
   const Work(title: 'Household chores', icon: Icons.wifi),
-  const Work(title: 'Unable to delivere care', icon: Icons.wifi),
+  const Work(title: 'Unable to deliver care', icon: Icons.wifi),
 ];
 
 class SelectWork extends StatelessWidget {
   const SelectWork({Key? key, required this.work}) : super(key: key);
   final Work work;
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +35,16 @@ class SelectWork extends StatelessWidget {
       fontWeight: FontWeight.bold,
     );
     return GestureDetector(
-      onTap: cardFunction,
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: ((context) => ResponsePage()),
+          ),
+        );
+      },
       child: Card(
         shape: const OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(4)),
+          borderRadius: BorderRadius.all(Radius.circular(4)),
           borderSide: BorderSide(color: Colors.purple),
         ),
         //color: cardFunction(),
@@ -56,13 +62,11 @@ class SelectWork extends StatelessWidget {
     );
   }
 
-  Color cardFunction() {
+  void cardFunction() {
     Color cardColor = Colors.white;
 
     if (work.title == 'Medication') {
-      print('medications');
+      print('Medication');
     }
-
-    return cardColor;
   }
 }

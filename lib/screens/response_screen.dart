@@ -1,4 +1,5 @@
 import 'package:domiciliary_care/constants/color.dart';
+import 'package:domiciliary_care/screens/visiting_screen.dart';
 import 'package:flutter/material.dart';
 
 class ResponsePage extends StatefulWidget {
@@ -29,6 +30,11 @@ class _ResponsePageState extends State<ResponsePage> {
                   IconButton(
                     onPressed: () {
                       // print('close button');
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: ((context) => VisitingScreen()),
+                        ),
+                      );
                     },
                     icon: const Icon(
                       Icons.close,

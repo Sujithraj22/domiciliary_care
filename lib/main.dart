@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Poppins', primarySwatch: Colors.blue),
       // color to change 265197
-      home: ResponsePage(),
+      home: VisitingScreen(),
     );
   }
 }
