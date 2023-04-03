@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../models/smileyIcons.dart';
+
+//import '../models/smileyIcons.dart';
 import '../models/work.dart';
 
 Color iconColor1 = Colors.grey;
@@ -10,7 +11,7 @@ Color iconColor4 = Colors.grey;
 Color iconColor5 = Colors.grey;
 
 class VisitingScreen extends StatefulWidget {
-  const VisitingScreen({Key? key}) : super(key: key);
+  const VisitingScreen({Key? key, }) : super(key: key);
 
   @override
   State<VisitingScreen> createState() => _VisitingScreenState();
@@ -21,6 +22,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
 
   @override
   Widget build(BuildContext context) {
+   initState(){};
     return SafeArea(
       child: Scaffold(
         //grid view
@@ -56,11 +58,11 @@ class _VisitingScreenState extends State<VisitingScreen> {
                   style: TextStyle(fontWeight: FontWeight.normal, fontSize: 20),
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     //smileyIcon(color: iconColor1, icon: Icons.add),
                     IconButton(
-                      padding: const EdgeInsets.only(top: 20, right: 50),
+                      //padding: const EdgeInsets.only(top: 20, right: 50),
                       color: iconColor1,
                       onPressed: () {
                         setState(() {
@@ -77,10 +79,10 @@ class _VisitingScreenState extends State<VisitingScreen> {
                       },
                       icon: const Icon(
                           Icons.sentiment_very_dissatisfied_rounded,
-                          size: 50),
+                          size: 45),
                     ),
                     IconButton(
-                      padding: const EdgeInsets.only(top: 20, right: 50),
+                     // padding: const EdgeInsets.only(top: 20, right: 50),
                       color: iconColor2,
                       onPressed: () {
                         setState(() {
@@ -95,18 +97,28 @@ class _VisitingScreenState extends State<VisitingScreen> {
                           }
                         });
                       },
-                      icon: const Icon(Icons.sentiment_dissatisfied, size: 50),
+                      icon: const Icon(Icons.sentiment_dissatisfied, size: 45),
                     ),
                     IconButton(
-                      padding: const EdgeInsets.only(top: 20, right: 50),
+                      //padding: const EdgeInsets.only(top: 20, right: 50),
                       color: iconColor3,
                       onPressed: () {
-                        smileyFunciton();
+                        setState(() {
+                          if (iconColor3 == Colors.green) {
+                            iconColor3 = Colors.grey;
+                          } else {
+                            iconColor3 = Colors.green;
+                            iconColor2 = Colors.grey;
+                            iconColor4 = Colors.grey;
+                            iconColor1 = Colors.grey;
+                            iconColor5 = Colors.grey;
+                          }
+                        });
                       },
-                      icon: const Icon(Icons.sentiment_neutral, size: 50),
+                      icon: const Icon(Icons.sentiment_neutral, size: 45),
                     ),
                     IconButton(
-                      padding: const EdgeInsets.only(top: 20, right: 50),
+                      //padding: const EdgeInsets.only(top: 20, right: 50),
                       color: iconColor4,
                       onPressed: () {
                         setState(() {
@@ -117,14 +129,14 @@ class _VisitingScreenState extends State<VisitingScreen> {
                             iconColor2 = Colors.grey;
                             iconColor3 = Colors.grey;
                             iconColor1 = Colors.grey;
-                            iconColor5 = Colors.grey;;
+                            iconColor5 = Colors.grey;
                           }
                         });
                       },
-                      icon: const Icon(Icons.sentiment_satisfied_alt, size: 50),
+                      icon: const Icon(Icons.sentiment_satisfied_alt, size: 45),
                     ),
                     IconButton(
-                      padding: const EdgeInsets.only(top: 20),
+                      //padding: const EdgeInsets.only(top: 20),
                       color: iconColor5,
                       onPressed: () {
                         setState(() {
@@ -135,12 +147,12 @@ class _VisitingScreenState extends State<VisitingScreen> {
                             iconColor2 = Colors.grey;
                             iconColor3 = Colors.grey;
                             iconColor4 = Colors.grey;
-                            iconColor1 = Colors.grey;;
+                            iconColor1 = Colors.grey;
                           }
                         });
                       },
                       icon:
-                          const Icon(Icons.sentiment_very_satisfied, size: 50),
+                          const Icon(Icons.sentiment_very_satisfied, size: 45),
                     ),
                   ],
                 ),
@@ -207,17 +219,5 @@ class _VisitingScreenState extends State<VisitingScreen> {
     );
   }
 
-  void smileyFunciton() {
-    return setState(() {
-                        if (iconColor3 == Colors.green) {
-                          iconColor3 = Colors.grey;
-                        } else {
-                          iconColor3 = Colors.green;
-                          iconColor2 = Colors.grey;
-                          iconColor1 = Colors.grey;
-                          iconColor4 = Colors.grey;
-                          iconColor5 = Colors.grey;;
-                        }
-                      });
-  }
+
 }

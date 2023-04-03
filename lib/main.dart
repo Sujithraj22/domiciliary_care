@@ -10,12 +10,18 @@ void main() {
     //systemNavigationBarColor: themeColor, // navigation bar color
     statusBarColor: themeColor, // status bar color
   ));
-  runApp( const MyApp());
+  runApp( MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -25,7 +31,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Poppins', primarySwatch: Colors.blue),
       // color to change 265197
-      home: const VisitingScreen(),
+      home: VisitingScreen(),
     );
   }
 }

@@ -1,11 +1,17 @@
 import 'package:domiciliary_care/constants/color.dart';
 import 'package:domiciliary_care/screens/visiting_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:domiciliary_care/models/work.dart';
 
 class ResponsePage extends StatelessWidget {
   final String workName;
 
-   const ResponsePage({Key? key, required this.workName}) : super(key: key);
+
+   ResponsePage({Key? key, required this.workName}) : super(key: key);
+
+   final responseController = TextEditingController();
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +39,9 @@ class ResponsePage extends StatelessWidget {
                  // SizedBox(width: 40),
                   IconButton(
                     padding: EdgeInsets.zero,
-                    constraints: BoxConstraints(),
+                    constraints: const BoxConstraints(),
                     onPressed: () {
+
                       // print('close button');
                       Navigator.of(context).push(
                         MaterialPageRoute(
@@ -43,18 +50,19 @@ class ResponsePage extends StatelessWidget {
                       );
                     },
                     icon: const Icon(
-                      
+
                       Icons.close,
                       size: 30,
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 10),
-              const TextField(
+              const SizedBox(height: 10),
+              TextField(
+                controller: responseController,
                 keyboardType: TextInputType.text,
                 maxLines: 27,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
                   hintText:
@@ -75,8 +83,27 @@ class ResponsePage extends StatelessWidget {
                 ),
                 onPressed: () {
 
+
+
+                  if(workName == 'Medication'){
+                    colorMedication = Colors.orange;
+                  }
+                print(responseController.text);
+
+
+
+                  Navigator.of(context).pop(
+
+                    MaterialPageRoute(
+                      builder: ((context) =>  VisitingScreen()),
+
+                    ),
+                  );
+
                 },
+
                 child: const Text('Save'),
+
               ),
             ],
           ),
