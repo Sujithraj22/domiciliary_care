@@ -2,7 +2,6 @@ import 'package:domiciliary_care/screens/response_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
 //import '../models/smileyIcons.dart';
 //import '../models/work.dart';
 
@@ -11,7 +10,6 @@ Color iconColor2 = Colors.grey;
 Color iconColor3 = Colors.grey;
 Color iconColor4 = Colors.grey;
 Color iconColor5 = Colors.grey;
-
 
 Color colorMedication = Colors.green;
 Color colorBodyMap = Colors.green;
@@ -28,7 +26,9 @@ Color colorHouseholdChores = Colors.green;
 Color colorUnableToDeliverCare = Colors.green;
 
 class VisitingScreen extends StatefulWidget {
-  const VisitingScreen({Key? key, }) : super(key: key);
+  const VisitingScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<VisitingScreen> createState() => _VisitingScreenState();
@@ -69,9 +69,8 @@ class _VisitingScreenState extends State<VisitingScreen> {
                   children: [
                     //title: 'Medication', icon: FontAwesomeIcons.pills, color: colorMedication
                     GestureDetector(
-                      onTap: () async{
-                        final data = await
-                        Navigator.of(context).push(
+                      onTap: () async {
+                        final data = await Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: ((context) =>
                                 ResponsePage(workName: 'Medication')),
@@ -79,11 +78,8 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         );
                         //colorMedication = data;
                         setState(() {
-                          print (colorMedication);
+                          print(colorMedication);
                         });
-
-
-
                       },
                       child: Card(
                         //change to colorMedication for changing color
@@ -98,22 +94,22 @@ class _VisitingScreenState extends State<VisitingScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               // crossAxisAlignment: CrossAxisAlignment.center,
                               children: const <Widget>[
-                                Icon(FontAwesomeIcons.pills, size: 40.0, color: Colors.black),
+                                Icon(FontAwesomeIcons.pills,
+                                    size: 40.0, color: Colors.black),
                                 SizedBox(height: 10),
-                                Text('Medication', style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-
-                                )),
+                                Text('Medication',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    )),
                               ]),
                         ),
                       ),
                     ),
                     //title: 'Body Map', icon: FontAwesomeIcons.person, color: colorBodyMap
                     GestureDetector(
-                      onTap: () async{
-                        final data = await
-                        Navigator.of(context).push(
+                      onTap: () async {
+                        final data = await Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: ((context) =>
                                 ResponsePage(workName: 'Body Map')),
@@ -121,11 +117,8 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         );
                         //colorMedication = data;
                         setState(() {
-                          print (colorBodyMap);
+                          print(colorBodyMap);
                         });
-
-
-
                       },
                       child: Card(
                         //change to colorMedication for changing color
@@ -140,22 +133,22 @@ class _VisitingScreenState extends State<VisitingScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               // crossAxisAlignment: CrossAxisAlignment.center,
                               children: const <Widget>[
-                                Icon(FontAwesomeIcons.person, size: 40.0, color: Colors.black),
+                                Icon(FontAwesomeIcons.person,
+                                    size: 40.0, color: Colors.black),
                                 SizedBox(height: 10),
-                                Text('Body Map', style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-
-                                )),
+                                Text('Body Map',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    )),
                               ]),
                         ),
                       ),
                     ),
                     //title: 'Food', icon: FontAwesomeIcons.utensils, color: colorFood
                     GestureDetector(
-                      onTap: () async{
-                        final data = await
-                        Navigator.of(context).push(
+                      onTap: () async {
+                        final data = await Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: ((context) =>
                                 ResponsePage(workName: 'Food')),
@@ -163,11 +156,8 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         );
                         //colorMedication = data;
                         setState(() {
-                          print (colorBodyMap);
+                          print(colorBodyMap);
                         });
-
-
-
                       },
                       child: Card(
                         //change to colorMedication for changing color
@@ -182,22 +172,22 @@ class _VisitingScreenState extends State<VisitingScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               // crossAxisAlignment: CrossAxisAlignment.center,
                               children: const <Widget>[
-                                Icon(FontAwesomeIcons.utensils, size: 40.0, color: Colors.black),
+                                Icon(FontAwesomeIcons.utensils,
+                                    size: 40.0, color: Colors.black),
                                 SizedBox(height: 10),
-                                Text('Food', style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-
-                                )),
+                                Text('Food',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    )),
                               ]),
                         ),
                       ),
                     ),
                     //title: 'Drinks', icon: FontAwesomeIcons.mugSaucer,color: colorDrinks
                     GestureDetector(
-                      onTap: () async{
-                        final data = await
-                        Navigator.of(context).push(
+                      onTap: () async {
+                        final data = await Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: ((context) =>
                                 ResponsePage(workName: 'Drinks')),
@@ -205,11 +195,8 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         );
                         //colorMedication = data;
                         setState(() {
-                          print (colorBodyMap);
+                          print(colorBodyMap);
                         });
-
-
-
                       },
                       child: Card(
                         //change to colorMedication for changing color
@@ -224,22 +211,22 @@ class _VisitingScreenState extends State<VisitingScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               // crossAxisAlignment: CrossAxisAlignment.center,
                               children: const <Widget>[
-                                Icon(FontAwesomeIcons.mugSaucer, size: 40.0, color: Colors.black),
+                                Icon(FontAwesomeIcons.mugSaucer,
+                                    size: 40.0, color: Colors.black),
                                 SizedBox(height: 10),
-                                Text('Drinks', style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-
-                                )),
+                                Text('Drinks',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    )),
                               ]),
                         ),
                       ),
                     ),
                     //title: 'Personal care', icon: FontAwesomeIcons.bath,color: colorPersonalCare
                     GestureDetector(
-                      onTap: () async{
-                        final data = await
-                        Navigator.of(context).push(
+                      onTap: () async {
+                        final data = await Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: ((context) =>
                                 ResponsePage(workName: 'Personal care')),
@@ -247,11 +234,8 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         );
                         //colorMedication = data;
                         setState(() {
-                          print (colorBodyMap);
+                          print(colorBodyMap);
                         });
-
-
-
                       },
                       child: Card(
                         //change to colorMedication for changing color
@@ -266,22 +250,22 @@ class _VisitingScreenState extends State<VisitingScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               // crossAxisAlignment: CrossAxisAlignment.center,
                               children: const <Widget>[
-                                Icon(FontAwesomeIcons.bath, size: 40.0, color: Colors.black),
+                                Icon(FontAwesomeIcons.bath,
+                                    size: 40.0, color: Colors.black),
                                 SizedBox(height: 10),
-                                Text('Personal care', style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-
-                                )),
+                                Text('Personal care',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    )),
                               ]),
                         ),
                       ),
                     ),
                     //title: 'Toilet assistance', icon: FontAwesomeIcons.toilet,color: colorToliletAssistance
                     GestureDetector(
-                      onTap: () async{
-                        final data = await
-                        Navigator.of(context).push(
+                      onTap: () async {
+                        final data = await Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: ((context) =>
                                 ResponsePage(workName: 'Toilet assistance')),
@@ -289,11 +273,8 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         );
                         //colorMedication = data;
                         setState(() {
-                          print (colorBodyMap);
+                          print(colorBodyMap);
                         });
-
-
-
                       },
                       child: Card(
                         //change to colorMedication for changing color
@@ -308,22 +289,22 @@ class _VisitingScreenState extends State<VisitingScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               // crossAxisAlignment: CrossAxisAlignment.center,
                               children: const <Widget>[
-                                Icon(FontAwesomeIcons.toilet, size: 40.0, color: Colors.black),
+                                Icon(FontAwesomeIcons.toilet,
+                                    size: 40.0, color: Colors.black),
                                 SizedBox(height: 10),
-                                Text('Toilet assistance', style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-
-                                )),
+                                Text('Toilet assistance',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    )),
                               ]),
                         ),
                       ),
                     ),
                     //title: 'Repositioning', icon: FontAwesomeIcons.bed,color: colorRepositioning
                     GestureDetector(
-                      onTap: () async{
-                        final data = await
-                        Navigator.of(context).push(
+                      onTap: () async {
+                        final data = await Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: ((context) =>
                                 ResponsePage(workName: 'Repositioning')),
@@ -331,11 +312,8 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         );
                         //colorMedication = data;
                         setState(() {
-                          print (colorBodyMap);
+                          print(colorBodyMap);
                         });
-
-
-
                       },
                       child: Card(
                         //change to colorMedication for changing color
@@ -350,34 +328,31 @@ class _VisitingScreenState extends State<VisitingScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               // crossAxisAlignment: CrossAxisAlignment.center,
                               children: const <Widget>[
-                                Icon(FontAwesomeIcons.bed, size: 40.0, color: Colors.black),
+                                Icon(FontAwesomeIcons.bed,
+                                    size: 40.0, color: Colors.black),
                                 SizedBox(height: 10),
-                                Text('Repositioning', style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-
-                                )),
+                                Text('Repositioning',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    )),
                               ]),
                         ),
                       ),
                     ),
                     //title: 'Companionship / respite care', icon: FontAwesomeIcons.peopleGroup,color: colorCompanionship
                     GestureDetector(
-                      onTap: () async{
-                        final data = await
-                        Navigator.of(context).push(
+                      onTap: () async {
+                        final data = await Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: ((context) =>
-                                ResponsePage(workName: 'Companionship / respite care')),
+                            builder: ((context) => ResponsePage(
+                                workName: 'Companionship / respite care')),
                           ),
                         );
                         //colorMedication = data;
                         setState(() {
-                          print (colorBodyMap);
+                          print(colorBodyMap);
                         });
-
-
-
                       },
                       child: Card(
                         //change to colorMedication for changing color
@@ -392,22 +367,27 @@ class _VisitingScreenState extends State<VisitingScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               // crossAxisAlignment: CrossAxisAlignment.center,
                               children: const <Widget>[
-                                Icon(FontAwesomeIcons.peopleGroup, size: 40.0, color: Colors.black),
+                                Icon(FontAwesomeIcons.peopleGroup,
+                                    size: 40.0, color: Colors.black),
                                 SizedBox(height: 10),
-                                Text('Companionship / respite care', style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-
-                                )),
+                                Text('Companionship /',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                Text('respite care',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ))
                               ]),
                         ),
                       ),
                     ),
                     //title: 'Laundry', icon: Icons.local_laundry_service_rounded,color: colorLaundry
                     GestureDetector(
-                      onTap: () async{
-                        final data = await
-                        Navigator.of(context).push(
+                      onTap: () async {
+                        final data = await Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: ((context) =>
                                 ResponsePage(workName: 'Laundry')),
@@ -415,11 +395,8 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         );
                         //colorMedication = data;
                         setState(() {
-                          print (colorBodyMap);
+                          print(colorBodyMap);
                         });
-
-
-
                       },
                       child: Card(
                         //change to colorMedication for changing color
@@ -434,22 +411,22 @@ class _VisitingScreenState extends State<VisitingScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               // crossAxisAlignment: CrossAxisAlignment.center,
                               children: const <Widget>[
-                                Icon(Icons.local_laundry_service_rounded, size: 40.0, color: Colors.black),
+                                Icon(Icons.local_laundry_service_rounded,
+                                    size: 40.0, color: Colors.black),
                                 SizedBox(height: 10),
-                                Text('Laundry', style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-
-                                )),
+                                Text('Laundry',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    )),
                               ]),
                         ),
                       ),
                     ),
                     //title: 'Groceries', icon: FontAwesomeIcons.cartShopping,color: colorGroceries
                     GestureDetector(
-                      onTap: () async{
-                        final data = await
-                        Navigator.of(context).push(
+                      onTap: () async {
+                        final data = await Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: ((context) =>
                                 ResponsePage(workName: 'Groceries')),
@@ -457,11 +434,8 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         );
                         //colorMedication = data;
                         setState(() {
-                          print (colorBodyMap);
+                          print(colorBodyMap);
                         });
-
-
-
                       },
                       child: Card(
                         //change to colorMedication for changing color
@@ -476,22 +450,22 @@ class _VisitingScreenState extends State<VisitingScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               // crossAxisAlignment: CrossAxisAlignment.center,
                               children: const <Widget>[
-                                Icon(FontAwesomeIcons.cartShopping, size: 40.0, color: Colors.black),
+                                Icon(FontAwesomeIcons.cartShopping,
+                                    size: 40.0, color: Colors.black),
                                 SizedBox(height: 10),
-                                Text('Groceries', style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-
-                                )),
+                                Text('Groceries',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    )),
                               ]),
                         ),
                       ),
                     ),
                     //title: 'Housework', icon: FontAwesomeIcons.broom,color: colorHousework
                     GestureDetector(
-                      onTap: () async{
-                        final data = await
-                        Navigator.of(context).push(
+                      onTap: () async {
+                        final data = await Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: ((context) =>
                                 ResponsePage(workName: 'Housework')),
@@ -499,11 +473,8 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         );
                         //colorMedication = data;
                         setState(() {
-                          print (colorBodyMap);
+                          print(colorBodyMap);
                         });
-
-
-
                       },
                       child: Card(
                         //change to colorMedication for changing color
@@ -518,22 +489,22 @@ class _VisitingScreenState extends State<VisitingScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               // crossAxisAlignment: CrossAxisAlignment.center,
                               children: const <Widget>[
-                                Icon(FontAwesomeIcons.broom, size: 40.0, color: Colors.black),
+                                Icon(FontAwesomeIcons.broom,
+                                    size: 40.0, color: Colors.black),
                                 SizedBox(height: 10),
-                                Text('Housework', style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-
-                                )),
+                                Text('Housework',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    )),
                               ]),
                         ),
                       ),
                     ),
                     //title: 'Household chores', icon: FontAwesomeIcons.screwdriverWrench,color: colorHouseholdChores
                     GestureDetector(
-                      onTap: () async{
-                        final data = await
-                        Navigator.of(context).push(
+                      onTap: () async {
+                        final data = await Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: ((context) =>
                                 ResponsePage(workName: 'Household chores')),
@@ -541,11 +512,8 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         );
                         //colorMedication = data;
                         setState(() {
-                          print (colorBodyMap);
+                          print(colorBodyMap);
                         });
-
-
-
                       },
                       child: Card(
                         //change to colorMedication for changing color
@@ -560,34 +528,31 @@ class _VisitingScreenState extends State<VisitingScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               // crossAxisAlignment: CrossAxisAlignment.center,
                               children: const <Widget>[
-                                Icon(FontAwesomeIcons.screwdriverWrench, size: 40.0, color: Colors.black),
+                                Icon(FontAwesomeIcons.screwdriverWrench,
+                                    size: 40.0, color: Colors.black),
                                 SizedBox(height: 10),
-                                Text('Household chores', style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-
-                                )),
+                                Text('Household chores',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    )),
                               ]),
                         ),
                       ),
                     ),
                     //title: 'Unable to deliver care', icon: FontAwesomeIcons.ban,color: colorUnableToDeliverCare
                     GestureDetector(
-                      onTap: () async{
-                        final data = await
-                        Navigator.of(context).push(
+                      onTap: () async {
+                        final data = await Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: ((context) =>
-                                ResponsePage(workName: 'Unable to deliver care')),
+                            builder: ((context) => ResponsePage(
+                                workName: 'Unable to deliver care')),
                           ),
                         );
                         //colorMedication = data;
                         setState(() {
-                          print (colorBodyMap);
+                          print(colorBodyMap);
                         });
-
-
-
                       },
                       child: Card(
                         //change to colorMedication for changing color
@@ -602,18 +567,18 @@ class _VisitingScreenState extends State<VisitingScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               // crossAxisAlignment: CrossAxisAlignment.center,
                               children: const <Widget>[
-                                Icon(FontAwesomeIcons.ban, size: 40.0, color: Colors.black),
+                                Icon(FontAwesomeIcons.ban,
+                                    size: 40.0, color: Colors.black),
                                 SizedBox(height: 10),
-                                Text('Unable to deliver care', style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-
-                                )),
+                                Text('Unable to deliver care',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    )),
                               ]),
                         ),
                       ),
                     ),
-
                   ],
                 ),
                 const SizedBox(height: 50),
@@ -622,10 +587,13 @@ class _VisitingScreenState extends State<VisitingScreen> {
                   style: TextStyle(fontWeight: FontWeight.normal, fontSize: 20),
                 ),
                 Row(
+                  //mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     //smileyIcon(color: iconColor1, icon: Icons.add),
                     IconButton(
+
+                      //constraints: BoxConstraints(),
                       //padding: const EdgeInsets.only(top: 20, right: 50),
                       color: iconColor1,
                       onPressed: () {
@@ -643,7 +611,8 @@ class _VisitingScreenState extends State<VisitingScreen> {
                       },
                       icon: const Icon(
                           Icons.sentiment_very_dissatisfied_rounded,
-                          size: 45),
+                        size: 45,
+                          ),
                     ),
                     IconButton(
                       // padding: const EdgeInsets.only(top: 20, right: 50),
@@ -716,7 +685,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         });
                       },
                       icon:
-                      const Icon(Icons.sentiment_very_satisfied, size: 45),
+                          const Icon(Icons.sentiment_very_satisfied, size: 45),
                     ),
                   ],
                 ),
@@ -782,6 +751,4 @@ class _VisitingScreenState extends State<VisitingScreen> {
       ),
     );
   }
-
-
 }
