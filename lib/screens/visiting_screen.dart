@@ -22,7 +22,8 @@ class _VisitingScreenState extends State<VisitingScreen> {
 
   @override
   Widget build(BuildContext context) {
-   initState(){};
+    print('reload');
+
     return SafeArea(
       child: Scaffold(
         //grid view

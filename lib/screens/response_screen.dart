@@ -6,16 +6,12 @@ import 'package:domiciliary_care/models/work.dart';
 class ResponsePage extends StatelessWidget {
   final String workName;
 
+  ResponsePage({Key? key, required this.workName}) : super(key: key);
 
-   ResponsePage({Key? key, required this.workName}) : super(key: key);
-
-   final responseController = TextEditingController();
-
-
+  final responseController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -32,25 +28,20 @@ class ResponsePage extends StatelessWidget {
                     child: Text(
                       workName,
                       //overflow: TextOverflow.visible,
-                      style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontSize: 25, fontWeight: FontWeight.bold),
                     ),
                   ),
 
-                 // SizedBox(width: 40),
+                  // SizedBox(width: 40),
                   IconButton(
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
                     onPressed: () {
-
                       // print('close button');
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: ((context) => const VisitingScreen()),
-                        ),
-                      );
+                      Navigator.pop(context, colorMedication);
                     },
                     icon: const Icon(
-
                       Icons.close,
                       size: 30,
                     ),
@@ -82,28 +73,55 @@ class ResponsePage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
+                  if (workName == 'Medication') {
+                    colorMedication = Colors.red;
+                  } else if(workName == 'Body Map'){
 
+                    colorMedication = Colors.red;
+                  }else if(workName == 'Food'){
 
+                    colorMedication = Colors.red;
+                  }else if(workName == 'Drinks'){
 
-                  if(workName == 'Medication'){
-                    colorMedication = Colors.orange;
+                    colorMedication = Colors.red;
+                  }else if(workName == 'Personal care'){
+
+                    colorMedication = Colors.red;
+                  }else if(workName == 'Toilet assistance'){
+
+                    colorMedication = Colors.red;
+                  }else if(workName == 'Repositioning'){
+
+                    colorMedication = Colors.red;
+                  }else if(workName == 'Comanionship / respite care'){
+
+                    colorMedication = Colors.red;
+                  }else if(workName == 'Laundry'){
+
+                    colorMedication = Colors.red;
+                  }else if(workName == 'Groceries'){
+
+                    colorMedication = Colors.red;
+                  }else if(workName == 'Housework'){
+
+                    colorMedication = Colors.red;
+                  }else if(workName == 'Household chores'){
+
+                    colorMedication = Colors.red;
+                  }else if(workName == 'Unable to deliver care'){
+
+                    colorMedication = Colors.red;
                   }
-                print(responseController.text);
+
+                  print(responseController.text);
 
 
 
-                  Navigator.of(context).pop(
 
-                    MaterialPageRoute(
-                      builder: ((context) =>  VisitingScreen()),
-
-                    ),
-                  );
+                  Navigator.pop(context, colorMedication);
 
                 },
-
                 child: const Text('Save'),
-
               ),
             ],
           ),
