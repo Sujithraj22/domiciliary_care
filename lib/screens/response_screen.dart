@@ -77,40 +77,40 @@ class ResponsePage extends StatelessWidget {
                     colorMedication = Colors.red;
                   } else if(workName == 'Body Map'){
 
-                    colorMedication = Colors.red;
+                    colorBodyMap = Colors.red;
                   }else if(workName == 'Food'){
 
-                    colorMedication = Colors.red;
+                    colorFood = Colors.red;
                   }else if(workName == 'Drinks'){
 
-                    colorMedication = Colors.red;
+                    colorDrinks = Colors.red;
                   }else if(workName == 'Personal care'){
 
-                    colorMedication = Colors.red;
+                    colorPersonalCare = Colors.red;
                   }else if(workName == 'Toilet assistance'){
 
-                    colorMedication = Colors.red;
+                    colorToliletAssistance = Colors.red;
                   }else if(workName == 'Repositioning'){
 
-                    colorMedication = Colors.red;
-                  }else if(workName == 'Comanionship / respite care'){
+                    colorRepositioning = Colors.red;
+                  }else if(workName == 'Companionship / respite care'){
 
-                    colorMedication = Colors.red;
+                    colorCompanionship = Colors.red;
                   }else if(workName == 'Laundry'){
 
-                    colorMedication = Colors.red;
+                    colorLaundry = Colors.red;
                   }else if(workName == 'Groceries'){
 
-                    colorMedication = Colors.red;
+                    colorGroceries = Colors.red;
                   }else if(workName == 'Housework'){
 
-                    colorMedication = Colors.red;
+                    colorHousework = Colors.red;
                   }else if(workName == 'Household chores'){
 
-                    colorMedication = Colors.red;
+                    colorHouseholdChores = Colors.red;
                   }else if(workName == 'Unable to deliver care'){
 
-                    colorMedication = Colors.red;
+                    colorUnableToDeliverCare = Colors.red;
                   }
 
                   print(responseController.text);

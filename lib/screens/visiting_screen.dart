@@ -1,14 +1,31 @@
+import 'package:domiciliary_care/screens/response_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 //import '../models/smileyIcons.dart';
-import '../models/work.dart';
+//import '../models/work.dart';
 
 Color iconColor1 = Colors.grey;
 Color iconColor2 = Colors.grey;
 Color iconColor3 = Colors.grey;
 Color iconColor4 = Colors.grey;
 Color iconColor5 = Colors.grey;
+
+
+Color colorMedication = Colors.green;
+Color colorBodyMap = Colors.green;
+Color colorFood = Colors.green;
+Color colorDrinks = Colors.green;
+Color colorPersonalCare = Colors.green;
+Color colorToliletAssistance = Colors.green;
+Color colorRepositioning = Colors.green;
+Color colorCompanionship = Colors.green;
+Color colorLaundry = Colors.green;
+Color colorGroceries = Colors.green;
+Color colorHousework = Colors.green;
+Color colorHouseholdChores = Colors.green;
+Color colorUnableToDeliverCare = Colors.green;
 
 class VisitingScreen extends StatefulWidget {
   const VisitingScreen({Key? key, }) : super(key: key);
@@ -49,9 +66,555 @@ class _VisitingScreenState extends State<VisitingScreen> {
                   crossAxisCount: 2,
                   crossAxisSpacing: 4.0,
                   mainAxisSpacing: 8.0,
-                  children: List.generate(works.length, (index) {
-                    return SelectWork(work: works[index]);
-                  }),
+                  children: [
+                    //title: 'Medication', icon: FontAwesomeIcons.pills, color: colorMedication
+                    GestureDetector(
+                      onTap: () async{
+                        final data = await
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: ((context) =>
+                                ResponsePage(workName: 'Medication')),
+                          ),
+                        );
+                        //colorMedication = data;
+                        setState(() {
+                          print (colorMedication);
+                        });
+
+
+
+                      },
+                      child: Card(
+                        //change to colorMedication for changing color
+                        color: colorMedication,
+                        shape: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(color: Colors.purple),
+                        ),
+                        //color: cardFunction(),
+                        child: Center(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              // crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const <Widget>[
+                                Icon(FontAwesomeIcons.pills, size: 40.0, color: Colors.black),
+                                SizedBox(height: 10),
+                                Text('Medication', style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+
+                                )),
+                              ]),
+                        ),
+                      ),
+                    ),
+                    //title: 'Body Map', icon: FontAwesomeIcons.person, color: colorBodyMap
+                    GestureDetector(
+                      onTap: () async{
+                        final data = await
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: ((context) =>
+                                ResponsePage(workName: 'Body Map')),
+                          ),
+                        );
+                        //colorMedication = data;
+                        setState(() {
+                          print (colorBodyMap);
+                        });
+
+
+
+                      },
+                      child: Card(
+                        //change to colorMedication for changing color
+                        color: colorBodyMap,
+                        shape: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(color: Colors.purple),
+                        ),
+                        //color: cardFunction(),
+                        child: Center(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              // crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const <Widget>[
+                                Icon(FontAwesomeIcons.person, size: 40.0, color: Colors.black),
+                                SizedBox(height: 10),
+                                Text('Body Map', style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+
+                                )),
+                              ]),
+                        ),
+                      ),
+                    ),
+                    //title: 'Food', icon: FontAwesomeIcons.utensils, color: colorFood
+                    GestureDetector(
+                      onTap: () async{
+                        final data = await
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: ((context) =>
+                                ResponsePage(workName: 'Food')),
+                          ),
+                        );
+                        //colorMedication = data;
+                        setState(() {
+                          print (colorBodyMap);
+                        });
+
+
+
+                      },
+                      child: Card(
+                        //change to colorMedication for changing color
+                        color: colorFood,
+                        shape: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(color: Colors.purple),
+                        ),
+                        //color: cardFunction(),
+                        child: Center(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              // crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const <Widget>[
+                                Icon(FontAwesomeIcons.utensils, size: 40.0, color: Colors.black),
+                                SizedBox(height: 10),
+                                Text('Food', style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+
+                                )),
+                              ]),
+                        ),
+                      ),
+                    ),
+                    //title: 'Drinks', icon: FontAwesomeIcons.mugSaucer,color: colorDrinks
+                    GestureDetector(
+                      onTap: () async{
+                        final data = await
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: ((context) =>
+                                ResponsePage(workName: 'Drinks')),
+                          ),
+                        );
+                        //colorMedication = data;
+                        setState(() {
+                          print (colorBodyMap);
+                        });
+
+
+
+                      },
+                      child: Card(
+                        //change to colorMedication for changing color
+                        color: colorDrinks,
+                        shape: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(color: Colors.purple),
+                        ),
+                        //color: cardFunction(),
+                        child: Center(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              // crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const <Widget>[
+                                Icon(FontAwesomeIcons.mugSaucer, size: 40.0, color: Colors.black),
+                                SizedBox(height: 10),
+                                Text('Drinks', style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+
+                                )),
+                              ]),
+                        ),
+                      ),
+                    ),
+                    //title: 'Personal care', icon: FontAwesomeIcons.bath,color: colorPersonalCare
+                    GestureDetector(
+                      onTap: () async{
+                        final data = await
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: ((context) =>
+                                ResponsePage(workName: 'Personal care')),
+                          ),
+                        );
+                        //colorMedication = data;
+                        setState(() {
+                          print (colorBodyMap);
+                        });
+
+
+
+                      },
+                      child: Card(
+                        //change to colorMedication for changing color
+                        color: colorPersonalCare,
+                        shape: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(color: Colors.purple),
+                        ),
+                        //color: cardFunction(),
+                        child: Center(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              // crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const <Widget>[
+                                Icon(FontAwesomeIcons.bath, size: 40.0, color: Colors.black),
+                                SizedBox(height: 10),
+                                Text('Personal care', style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+
+                                )),
+                              ]),
+                        ),
+                      ),
+                    ),
+                    //title: 'Toilet assistance', icon: FontAwesomeIcons.toilet,color: colorToliletAssistance
+                    GestureDetector(
+                      onTap: () async{
+                        final data = await
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: ((context) =>
+                                ResponsePage(workName: 'Toilet assistance')),
+                          ),
+                        );
+                        //colorMedication = data;
+                        setState(() {
+                          print (colorBodyMap);
+                        });
+
+
+
+                      },
+                      child: Card(
+                        //change to colorMedication for changing color
+                        color: colorToliletAssistance,
+                        shape: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(color: Colors.purple),
+                        ),
+                        //color: cardFunction(),
+                        child: Center(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              // crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const <Widget>[
+                                Icon(FontAwesomeIcons.toilet, size: 40.0, color: Colors.black),
+                                SizedBox(height: 10),
+                                Text('Toilet assistance', style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+
+                                )),
+                              ]),
+                        ),
+                      ),
+                    ),
+                    //title: 'Repositioning', icon: FontAwesomeIcons.bed,color: colorRepositioning
+                    GestureDetector(
+                      onTap: () async{
+                        final data = await
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: ((context) =>
+                                ResponsePage(workName: 'Repositioning')),
+                          ),
+                        );
+                        //colorMedication = data;
+                        setState(() {
+                          print (colorBodyMap);
+                        });
+
+
+
+                      },
+                      child: Card(
+                        //change to colorMedication for changing color
+                        color: colorRepositioning,
+                        shape: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(color: Colors.purple),
+                        ),
+                        //color: cardFunction(),
+                        child: Center(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              // crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const <Widget>[
+                                Icon(FontAwesomeIcons.bed, size: 40.0, color: Colors.black),
+                                SizedBox(height: 10),
+                                Text('Repositioning', style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+
+                                )),
+                              ]),
+                        ),
+                      ),
+                    ),
+                    //title: 'Companionship / respite care', icon: FontAwesomeIcons.peopleGroup,color: colorCompanionship
+                    GestureDetector(
+                      onTap: () async{
+                        final data = await
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: ((context) =>
+                                ResponsePage(workName: 'Companionship / respite care')),
+                          ),
+                        );
+                        //colorMedication = data;
+                        setState(() {
+                          print (colorBodyMap);
+                        });
+
+
+
+                      },
+                      child: Card(
+                        //change to colorMedication for changing color
+                        color: colorCompanionship,
+                        shape: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(color: Colors.purple),
+                        ),
+                        //color: cardFunction(),
+                        child: Center(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              // crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const <Widget>[
+                                Icon(FontAwesomeIcons.peopleGroup, size: 40.0, color: Colors.black),
+                                SizedBox(height: 10),
+                                Text('Companionship / respite care', style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+
+                                )),
+                              ]),
+                        ),
+                      ),
+                    ),
+                    //title: 'Laundry', icon: Icons.local_laundry_service_rounded,color: colorLaundry
+                    GestureDetector(
+                      onTap: () async{
+                        final data = await
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: ((context) =>
+                                ResponsePage(workName: 'Laundry')),
+                          ),
+                        );
+                        //colorMedication = data;
+                        setState(() {
+                          print (colorBodyMap);
+                        });
+
+
+
+                      },
+                      child: Card(
+                        //change to colorMedication for changing color
+                        color: colorLaundry,
+                        shape: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(color: Colors.purple),
+                        ),
+                        //color: cardFunction(),
+                        child: Center(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              // crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const <Widget>[
+                                Icon(Icons.local_laundry_service_rounded, size: 40.0, color: Colors.black),
+                                SizedBox(height: 10),
+                                Text('Laundry', style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+
+                                )),
+                              ]),
+                        ),
+                      ),
+                    ),
+                    //title: 'Groceries', icon: FontAwesomeIcons.cartShopping,color: colorGroceries
+                    GestureDetector(
+                      onTap: () async{
+                        final data = await
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: ((context) =>
+                                ResponsePage(workName: 'Groceries')),
+                          ),
+                        );
+                        //colorMedication = data;
+                        setState(() {
+                          print (colorBodyMap);
+                        });
+
+
+
+                      },
+                      child: Card(
+                        //change to colorMedication for changing color
+                        color: colorGroceries,
+                        shape: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(color: Colors.purple),
+                        ),
+                        //color: cardFunction(),
+                        child: Center(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              // crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const <Widget>[
+                                Icon(FontAwesomeIcons.cartShopping, size: 40.0, color: Colors.black),
+                                SizedBox(height: 10),
+                                Text('Groceries', style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+
+                                )),
+                              ]),
+                        ),
+                      ),
+                    ),
+                    //title: 'Housework', icon: FontAwesomeIcons.broom,color: colorHousework
+                    GestureDetector(
+                      onTap: () async{
+                        final data = await
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: ((context) =>
+                                ResponsePage(workName: 'Housework')),
+                          ),
+                        );
+                        //colorMedication = data;
+                        setState(() {
+                          print (colorBodyMap);
+                        });
+
+
+
+                      },
+                      child: Card(
+                        //change to colorMedication for changing color
+                        color: colorHousework,
+                        shape: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(color: Colors.purple),
+                        ),
+                        //color: cardFunction(),
+                        child: Center(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              // crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const <Widget>[
+                                Icon(FontAwesomeIcons.broom, size: 40.0, color: Colors.black),
+                                SizedBox(height: 10),
+                                Text('Housework', style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+
+                                )),
+                              ]),
+                        ),
+                      ),
+                    ),
+                    //title: 'Household chores', icon: FontAwesomeIcons.screwdriverWrench,color: colorHouseholdChores
+                    GestureDetector(
+                      onTap: () async{
+                        final data = await
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: ((context) =>
+                                ResponsePage(workName: 'Household chores')),
+                          ),
+                        );
+                        //colorMedication = data;
+                        setState(() {
+                          print (colorBodyMap);
+                        });
+
+
+
+                      },
+                      child: Card(
+                        //change to colorMedication for changing color
+                        color: colorHouseholdChores,
+                        shape: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(color: Colors.purple),
+                        ),
+                        //color: cardFunction(),
+                        child: Center(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              // crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const <Widget>[
+                                Icon(FontAwesomeIcons.screwdriverWrench, size: 40.0, color: Colors.black),
+                                SizedBox(height: 10),
+                                Text('Household chores', style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+
+                                )),
+                              ]),
+                        ),
+                      ),
+                    ),
+                    //title: 'Unable to deliver care', icon: FontAwesomeIcons.ban,color: colorUnableToDeliverCare
+                    GestureDetector(
+                      onTap: () async{
+                        final data = await
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: ((context) =>
+                                ResponsePage(workName: 'Unable to deliver care')),
+                          ),
+                        );
+                        //colorMedication = data;
+                        setState(() {
+                          print (colorBodyMap);
+                        });
+
+
+
+                      },
+                      child: Card(
+                        //change to colorMedication for changing color
+                        color: colorUnableToDeliverCare,
+                        shape: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(color: Colors.purple),
+                        ),
+                        //color: cardFunction(),
+                        child: Center(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              // crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const <Widget>[
+                                Icon(FontAwesomeIcons.ban, size: 40.0, color: Colors.black),
+                                SizedBox(height: 10),
+                                Text('Unable to deliver care', style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+
+                                )),
+                              ]),
+                        ),
+                      ),
+                    ),
+
+                  ],
                 ),
                 const SizedBox(height: 50),
                 const Text(
@@ -83,7 +646,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                           size: 45),
                     ),
                     IconButton(
-                     // padding: const EdgeInsets.only(top: 20, right: 50),
+                      // padding: const EdgeInsets.only(top: 20, right: 50),
                       color: iconColor2,
                       onPressed: () {
                         setState(() {
@@ -153,7 +716,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         });
                       },
                       icon:
-                          const Icon(Icons.sentiment_very_satisfied, size: 45),
+                      const Icon(Icons.sentiment_very_satisfied, size: 45),
                     ),
                   ],
                 ),
