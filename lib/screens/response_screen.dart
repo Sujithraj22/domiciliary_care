@@ -39,7 +39,7 @@ class ResponsePage extends StatelessWidget {
                     constraints: const BoxConstraints(),
                     onPressed: () {
                       // print('close button');
-                      Navigator.pop(context, colorMedication);
+                      Navigator.pop(context, '');
                     },
                     icon: const Icon(
                       Icons.close,
@@ -73,53 +73,44 @@ class ResponsePage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  if (workName == 'Medication') {
-                    colorMedication = Colors.red;
-                  } else if(workName == 'Body Map'){
+                  // if (workName == 'xyzxyz') {
+                  //   cardColor = Colors.red;
+                  // }
+                  // else if (workName == 'pqrpqr') {
+                  //   cardColor = Colors.red;
+               //   }
 
-                    colorBodyMap = Colors.red;
-                  }else if(workName == 'Food'){
-
-                    colorFood = Colors.red;
-                  }else if(workName == 'Drinks'){
-
-                    colorDrinks = Colors.red;
-                  }else if(workName == 'Personal care'){
-
-                    colorPersonalCare = Colors.red;
-                  }else if(workName == 'Toilet assistance'){
-
-                    colorToliletAssistance = Colors.red;
-                  }else if(workName == 'Repositioning'){
-
-                    colorRepositioning = Colors.red;
-                  }else if(workName == 'Companionship / respite care'){
-
-                    colorCompanionship = Colors.red;
-                  }else if(workName == 'Laundry'){
-
-                    colorLaundry = Colors.red;
-                  }else if(workName == 'Groceries'){
-
-                    colorGroceries = Colors.red;
-                  }else if(workName == 'Housework'){
-
-                    colorHousework = Colors.red;
-                  }else if(workName == 'Household chores'){
-
-                    colorHouseholdChores = Colors.red;
-                  }else if(workName == 'Unable to deliver care'){
-
-                    colorUnableToDeliverCare = Colors.red;
-                  }
+                  // else if (workName == 'Medication') {
+                  //   colorMedication = Colors.red;
+                  // } else if (workName == 'Body Map') {
+                  //   colorBodyMap = Colors.red;
+                  // } else if (workName == 'Food') {
+                  //   colorFood = Colors.red;
+                  // } else if (workName == 'Drinks') {
+                  //   colorDrinks = Colors.red;
+                  // } else if (workName == 'Personal care') {
+                  //   colorPersonalCare = Colors.red;
+                  // } else if (workName == 'Toilet assistance') {
+                  //   colorToliletAssistance = Colors.red;
+                  // } else if (workName == 'Repositioning') {
+                  //   colorRepositioning = Colors.red;
+                  // } else if (workName == 'Companionship / respite care') {
+                  //   colorCompanionship = Colors.red;
+                  // } else if (workName == 'Laundry') {
+                  //   colorLaundry = Colors.red;
+                  // } else if (workName == 'Groceries') {
+                  //   colorGroceries = Colors.red;
+                  // } else if (workName == 'Housework') {
+                  //   colorHousework = Colors.red;
+                  // } else if (workName == 'Household chores') {
+                  //   colorHouseholdChores = Colors.red;
+                  // } else if (workName == 'Unable to deliver care') {
+                  //   colorUnableToDeliverCare = Colors.red;
+                  // }
 
                   print(responseController.text);
 
-
-
-
-                  Navigator.pop(context, colorMedication);
-
+                  Navigator.pop(context, workName);
                 },
                 child: const Text('Save'),
               ),
