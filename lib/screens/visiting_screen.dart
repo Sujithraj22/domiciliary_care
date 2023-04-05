@@ -11,7 +11,7 @@ Color iconColor3 = Colors.grey;
 Color iconColor4 = Colors.grey;
 Color iconColor5 = Colors.grey;
 
-Color cardColor = Colors.green;
+
 // Color colorMedication = Colors.green;
 // Color colorBodyMap = Colors.green;
 // Color colorFood = Colors.green;
@@ -26,9 +26,8 @@ Color cardColor = Colors.green;
 // Color colorHouseholdChores = Colors.green;
 // Color colorUnableToDeliverCare = Colors.green;
 
-
+//bool requiredBool = true;
 class VisitingScreen extends StatefulWidget {
-
   VisitingScreen({
     Key? key,
   }) : super(key: key);
@@ -39,15 +38,19 @@ class VisitingScreen extends StatefulWidget {
 
 class _VisitingScreenState extends State<VisitingScreen> {
   Color cardColora = Colors.yellow;
+  Color cardColor = Colors.green;
 
   int selectedValue = 0;
   String msg = '';
 
-  GestureDetector cardFunction(BuildContext context,
-      {required String text1,
-      required String text2,
-      required Color cardColor,
-      required IconData iconWork}) {
+  GestureDetector cardFunction(
+    BuildContext context, {
+    required String text1,
+    required String text2,
+    required Color cardColor,
+    required IconData iconWork,
+    required requiredBool,
+  }) {
     //String text1 = 'demo';
     // text2 = '';
     // Color cardColor = Colors.green;
@@ -67,32 +70,54 @@ class _VisitingScreenState extends State<VisitingScreen> {
           //cardColora = data;
         });
       },
+      child: Stack(
+        alignment: AlignmentDirectional.topEnd,
+        children: [
+          Card(
+            //change to colorMedication for changing color
+            color: cardColor,
+            shape: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(6)),
+              borderSide: BorderSide(color: Colors.purple, width: 3.5),
+            ),
+            //color: cardFunction(),
+            child: Center(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(iconWork, size: 40.0, color: Colors.black),
+                    SizedBox(height: 10),
+                    Text(text1,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Text(text2,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ))
+                  ]),
+            ),
+          ),
+          requiredCard(requiredBool: requiredBool),
+        ],
+      ),
+    );
+  }
+
+  // required label function
+  Visibility requiredCard({required requiredBool}) {
+    return Visibility(
+      visible: requiredBool,
       child: Card(
-        //change to colorMedication for changing color
-        color: cardColor,
-        shape: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(4)),
-          borderSide: BorderSide(color: Colors.purple),
-        ),
-        //color: cardFunction(),
-        child: Center(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Icon(iconWork, size: 40.0, color: Colors.black),
-                SizedBox(height: 10),
-                Text(text1,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    )),
-                Text(text2,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ))
-              ]),
+        color: Colors.purple,
+        child: Padding(
+          padding: const EdgeInsets.all(5),
+          child: Text('Required', style: TextStyle(
+            color: Colors.white,
+          ),),
         ),
       ),
     );
@@ -129,91 +154,108 @@ class _VisitingScreenState extends State<VisitingScreen> {
                   crossAxisSpacing: 4.0,
                   mainAxisSpacing: 8.0,
                   children: [
-                    cardFunction(context,
-                        text1: 'xyz',
-                        text2: 'xyz',
-                        cardColor: Colors.orange,
-                        iconWork: Icons.home),
+                    cardFunction(
+                      context,
+                      requiredBool: true,
+                      text1: 'xyz',
+                      text2: 'xyz',
+                      cardColor: Colors.orange,
+                      iconWork: Icons.home,
+                    ),
 
                     cardFunction(context,
+                        requiredBool: false,
                         text1: 'pqr',
                         text2: 'pqr',
                         cardColor: Colors.orange,
                         iconWork: Icons.home_mini),
                     //title: 'Medication', icon: FontAwesomeIcons.pills, color: colorMedication
                     cardFunction(context,
+                        requiredBool: false,
                         text1: 'Medication',
                         text2: '',
                         cardColor: cardColor,
                         iconWork: FontAwesomeIcons.pills),
                     //title: 'Body Map', icon: FontAwesomeIcons.person, color: colorBodyMap
                     cardFunction(context,
+                        requiredBool: true,
                         text1: 'Body Map',
                         text2: '',
                         cardColor: cardColor,
                         iconWork: FontAwesomeIcons.person),
                     //title: 'Food', icon: FontAwesomeIcons.utensils, color: colorFood
                     cardFunction(context,
+                        requiredBool: false,
                         text1: 'Food',
                         text2: '',
                         cardColor: cardColor,
                         iconWork: FontAwesomeIcons.utensils),
                     //title: 'Drinks', icon: FontAwesomeIcons.mugSaucer,color: colorDrinks
                     cardFunction(context,
+                        requiredBool: false,
                         text1: 'Drinks',
                         text2: '',
                         cardColor: cardColor,
                         iconWork: FontAwesomeIcons.mugSaucer),
                     //title: 'Personal care', icon: FontAwesomeIcons.bath,color: colorPersonalCare
                     cardFunction(context,
+                        requiredBool: true,
                         text1: 'Personal care',
                         text2: '',
                         cardColor: cardColor,
                         iconWork: FontAwesomeIcons.bath),
                     //title: 'Toilet assistance', icon: FontAwesomeIcons.toilet,color: colorToliletAssistance
                     cardFunction(context,
+                        requiredBool: false,
                         text1: 'Toilet assistance',
                         text2: '',
                         cardColor: cardColor,
                         iconWork: FontAwesomeIcons.toilet),
                     //title: 'Repositioning', icon: FontAwesomeIcons.bed,color: colorRepositioning
                     cardFunction(context,
+                        requiredBool: false,
                         text1: 'Repositioning',
                         text2: '',
                         cardColor: cardColor,
                         iconWork: FontAwesomeIcons.bed),
                     //title: 'Companionship / respite care', icon: FontAwesomeIcons.peopleGroup,color: colorCompanionship
                     cardFunction(context,
+                        requiredBool: false,
                         text1: 'Companionship /',
-                        text2: 'respite care',
+                        text2: ' respite care',
                         cardColor: cardColor,
                         iconWork: FontAwesomeIcons.peopleGroup),
                     //title: 'Laundry', icon: Icons.local_laundry_service_rounded,color: colorLaundry
                     cardFunction(context,
+                        requiredBool: false,
                         text1: 'Laundry',
                         text2: '',
                         cardColor: cardColor,
                         iconWork: Icons.local_laundry_service_rounded),
                     //title: 'Groceries', icon: FontAwesomeIcons.cartShopping,color: colorGroceries
                     cardFunction(context,
+                        requiredBool: false,
                         text1: 'Groceries',
                         text2: '',
                         cardColor: cardColor,
                         iconWork: FontAwesomeIcons.cartShopping),
                     //title: 'Housework', icon: FontAwesomeIcons.broom,color: colorHousework
                     cardFunction(context,
+                        requiredBool: false,
                         text1: 'Housework',
                         text2: '',
                         cardColor: cardColor,
                         iconWork: FontAwesomeIcons.broom),
                     //title: 'Household chores', icon: FontAwesomeIcons.screwdriverWrench,color: colorHouseholdChores
                     cardFunction(context,
+                        requiredBool: false,
                         text1: 'Household chores',
                         text2: '',
                         cardColor: cardColor,
                         iconWork: FontAwesomeIcons.screwdriverWrench),
                     //title: 'Unable to deliver care', icon: FontAwesomeIcons.ban,color: colorUnableToDeliverCare
                     cardFunction(context,
+                        requiredBool: false,
                         text1: 'Unable to deliver care',
                         text2: '',
                         cardColor: cardColor,
