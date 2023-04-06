@@ -1,5 +1,6 @@
 import 'package:domiciliary_care/constants/color.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ReportPage extends StatefulWidget {
   const ReportPage({Key? key}) : super(key: key);
@@ -27,33 +28,41 @@ class _ReportPageState extends State<ReportPage> {
                     color: Colors.grey,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('Wednesday 22 Mar'),
+                      child: Text('Wednesday 22 Mar', style: TextStyle(
+                        fontSize: 18,
+                      )),
                     )),
                 IntrinsicHeight(
                   child: Container(
                     padding: EdgeInsets.all(8),
                     child: Row(
+
                       children: [
                         Container(
-                          padding: EdgeInsets.all(8),
+                          padding: EdgeInsets.all(6),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Row(
                                 children: [
-                                  Icon(Icons.add),
-                                  Text('10:32'),
+                                  Icon(Icons.arrow_circle_right_outlined),
+                                  Text('10:32', style: TextStyle(
+                                    fontSize: 18,
+                                  )),
                                 ],
                               ),
                               Row(
                                 children: [
-                                  Icon(Icons.abc),
-                                  Text('18:52'),
+                                  Icon(Icons.arrow_circle_left_outlined),
+                                  Text('18:52', style: TextStyle(
+                                    fontSize: 18)),
                                 ],
                               ),
                               Row(
                                 children: [
-                                  Icon(Icons.abc),
-                                  Text('18:52'),
+                                  Icon(Icons.schedule_outlined),
+                                  Text('18:52', style: TextStyle(
+                                    fontSize: 18)),
                                 ],
                               ),
                             ],
@@ -63,27 +72,48 @@ class _ReportPageState extends State<ReportPage> {
                         Container(
                           padding: EdgeInsets.all(8),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Row(
-                                children: [
-                                  Text('Care workers:'),
-                                  Text('Rovin Reo')
-                                ],
+                              Container(
+                                padding: EdgeInsets.all(4),
+                                child: Row(
+                                  children: [
+                                    Text('Care workers:', style: TextStyle(
+                                      fontWeight: FontWeight.bold, fontSize: 18,
+                                    )),
+                                    Text('Rovin Reo', style: TextStyle(fontSize: 18),)
+                                  ],
+                                ),
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Card(
-                                    child: Icon(Icons.add),
-                                  ),
-                                  Card(
-                                    child: Icon(Icons.add),
-                                  ),
-                                  Card(
-                                    child: Icon(Icons.add),
-                                  ),
-                                ],
+                              Container(
+                                //padding: EdgeInsets.all(8),
+                                child: Row(
+                                  //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Card(
+                                     // margin: EdgeInsets.all(10),
+
+
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Icon(FontAwesomeIcons.pills, size: 26),
+                                      ),
+                                    ),
+                                    Card(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Icon(FontAwesomeIcons.person ,size: 26),
+                                      ),
+                                    ),
+                                    Card(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Icon(FontAwesomeIcons.utensils, size: 26),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
