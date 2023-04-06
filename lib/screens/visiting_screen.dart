@@ -1,3 +1,4 @@
+import 'package:domiciliary_care/screens/patientreport.dart';
 import 'package:domiciliary_care/screens/response_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -419,7 +420,9 @@ class _VisitingScreenState extends State<VisitingScreen> {
                       borderRadius: BorderRadius.circular(25),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () async{
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ReportPage()));
+                  },
                   child: Text('Check out'),
                 ),
               ],

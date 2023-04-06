@@ -1,4 +1,5 @@
 import 'package:domiciliary_care/constants/color.dart';
+import 'package:domiciliary_care/screens/patientreport.dart';
 //import 'package:domiciliary_care/screens/home_screen.dart';
 //import 'package:domiciliary_care/screens/response_screen.dart';
 import 'package:domiciliary_care/screens/visiting_screen.dart';
@@ -29,9 +30,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
 
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Poppins', primarySwatch: Colors.blue),
+      theme: ThemeData(fontFamily: 'Poppins', primaryColor: themeColor),
       // color to change 265197
-      home: VisitingScreen(),
+      home:ReportPage(),
     );
   }
 }
