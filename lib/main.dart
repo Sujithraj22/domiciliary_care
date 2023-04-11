@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Poppins', primaryColor: themeColor),
       // color to change 265197
-      home:ReportPage(),
+      home:VisitingScreen(),
     );
   }
 }

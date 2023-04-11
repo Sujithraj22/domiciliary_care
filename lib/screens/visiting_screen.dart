@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 //import '../models/smileyIcons.dart';
-//import '../models/work.dart';
+//import '../models/workreport.dart';
 
 Color iconColor1 = Colors.grey;
 Color iconColor2 = Colors.grey;
@@ -176,7 +176,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         text1: 'Medication',
                         text2: '',
                         cardColor: cardColor,
-                        iconWork: FontAwesomeIcons.pills),
+                        iconWork: FontAwesomeIcons.prescriptionBottleMedical),
                     //title: 'Body Map', icon: FontAwesomeIcons.person, color: colorBodyMap
                     cardFunction(context,
                         requiredBool: true,
