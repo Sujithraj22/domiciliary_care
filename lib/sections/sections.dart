@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:domiciliary_care/models/workreport.dart';
-import 'package:domiciliary_care/screens/patientreport.dart';
+
 
 
 
 //************TimingWidget***********
 class TimingWidget extends StatelessWidget {
-  const TimingWidget({
+   TimingWidget({
     super.key,
+    required this.clockInTime,
+    required this.clockOutTime,
+    required this.totalTime,
   });
+  String clockInTime = '-';
+  String clockOutTime = '-';
+  String totalTime = '-';
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +30,7 @@ class TimingWidget extends StatelessWidget {
           Row(
             children: [
               Icon(Icons.arrow_circle_right_outlined),
-              Text(worker.clockInTime,
+              Text(clockInTime,
                   style: TextStyle(
                     fontSize: 18,
                   )),
@@ -33,13 +39,13 @@ class TimingWidget extends StatelessWidget {
           Row(
             children: [
               Icon(Icons.arrow_circle_left_outlined),
-              Text(worker.clockOutTime, style: TextStyle(fontSize: 18)),
+              Text(clockOutTime, style: TextStyle(fontSize: 18)),
             ],
           ),
           Row(
             children: [
               Icon(Icons.schedule_outlined),
-              Text(worker.totaltime, style: TextStyle(fontSize: 18)),
+              Text(totalTime, style: TextStyle(fontSize: 18)),
             ],
           ),
         ],
@@ -50,10 +56,12 @@ class TimingWidget extends StatelessWidget {
 
 //**********CareWorkersWidget*************
 class CareWorkersWidget extends StatelessWidget {
-  const CareWorkersWidget({
-    super.key,
-  });
+   CareWorkersWidget({
+    super.key, required this.careWorkerName, required this.careWorker,
 
+  });
+  String careWorkerName;
+  String careWorker;
   @override
   Widget build(BuildContext context) {
 
@@ -62,13 +70,13 @@ class CareWorkersWidget extends StatelessWidget {
       padding: EdgeInsets.all(4),
       child: Row(
         children: [
-          Text(worker.careWorker,
+          Text(careWorker,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
               )),
           Text(
-            worker.careWorkerName,
+            ' ' + careWorkerName,
             style: TextStyle(fontSize: 18),
           )
         ],
@@ -80,35 +88,22 @@ class CareWorkersWidget extends StatelessWidget {
 
 //*********WorkerIconWidget*************
 class WorkerIconWidget extends StatelessWidget {
-  const WorkerIconWidget({
+  WorkerIconWidget({
     super.key,
+    required this.iconData,
   });
+
+  IconData  iconData  ;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //padding: EdgeInsets.all(8),
-      child: Row(
-        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Card(
-            // margin: EdgeInsets.all(10),
+    return Card(
+      // margin: EdgeInsets.all(10),
 
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(FontAwesomeIcons.prescriptionBottleMedical,
-                  size: 26),
-            ),
-          ),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(FontAwesomeIcons.person,
-                  size: 26),
-            ),
-          ),
-          WorkCard(),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Icon(iconData,
+            size: 26),
       ),
     );
   }
@@ -116,19 +111,3 @@ class WorkerIconWidget extends StatelessWidget {
 
 
 //************WorkCard************
-class WorkCard extends StatelessWidget {
-  const WorkCard({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Icon(FontAwesomeIcons.utensils,
-            size: 26),
-      ),
-    );
-  }
-}

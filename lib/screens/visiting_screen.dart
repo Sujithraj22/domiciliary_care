@@ -67,7 +67,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
         //colorMedication = data;
         setState(() {
           //print(colorBodyMap);
-          msg = data;
+         // msg = data;
           //cardColora = data;
         });
       },
