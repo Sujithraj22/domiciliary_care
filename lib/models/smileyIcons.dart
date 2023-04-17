@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../screens/visiting_screen.dart';
+
 Color iconColor = Colors.green;
-String? iconName ;
+String? iconName;
+
 class smileyIcon extends StatefulWidget {
-   smileyIcon({Key? key,required color, required icon}) : super(key: key);
+  smileyIcon({Key? key, required color, required icon}) : super(key: key);
 
   @override
   State<smileyIcon> createState() => _smileyIconState();
@@ -13,7 +15,6 @@ class smileyIcon extends StatefulWidget {
 class _smileyIconState extends State<smileyIcon> {
   @override
   Widget build(BuildContext context) {
-
     return Expanded(
       child: IconButton(
         color: iconColor,
@@ -26,9 +27,7 @@ class _smileyIconState extends State<smileyIcon> {
             }
           });
         },
-        icon: const Icon(
-            Icons.add,
-            size: 50),
+        icon: const Icon(Icons.add, size: 50),
       ),
     );
   }

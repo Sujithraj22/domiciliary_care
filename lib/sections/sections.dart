@@ -1,35 +1,33 @@
 import 'package:flutter/material.dart';
 
-import 'package:domiciliary_care/models/workreport.dart';
-
-
-
-
 //************TimingWidget***********
 class TimingWidget extends StatelessWidget {
-   TimingWidget({
+  TimingWidget({
     super.key,
     required this.clockInTime,
     required this.clockOutTime,
     required this.totalTime,
   });
+
   String clockInTime = '-';
   String clockOutTime = '-';
   String totalTime = '-';
 
   @override
   Widget build(BuildContext context) {
-    WorkReport worker = WorkReport();
-
+    //WorkReport worker = WorkReport();
 
     return Container(
+      width: 100,
+      height: 100,
       padding: EdgeInsets.all(6),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(Icons.arrow_circle_right_outlined),
+              Icon(Icons.arrow_circle_right_outlined, size: 16),
               Text(clockInTime,
                   style: TextStyle(
                     fontSize: 18,
@@ -38,13 +36,13 @@ class TimingWidget extends StatelessWidget {
           ),
           Row(
             children: [
-              Icon(Icons.arrow_circle_left_outlined),
+              Icon(Icons.arrow_circle_left_outlined, size: 16),
               Text(clockOutTime, style: TextStyle(fontSize: 18)),
             ],
           ),
           Row(
             children: [
-              Icon(Icons.schedule_outlined),
+              Icon(Icons.schedule_outlined, size: 16),
               Text(totalTime, style: TextStyle(fontSize: 18)),
             ],
           ),
@@ -56,16 +54,18 @@ class TimingWidget extends StatelessWidget {
 
 //**********CareWorkersWidget*************
 class CareWorkersWidget extends StatelessWidget {
-   CareWorkersWidget({
-    super.key, required this.careWorkerName, required this.careWorker,
-
+  CareWorkersWidget({
+    super.key,
+    required this.careWorkerName,
+    required this.careWorker,
   });
+
   String careWorkerName;
   String careWorker;
+
   @override
   Widget build(BuildContext context) {
-
-    WorkReport worker = WorkReport();
+    //  WorkReport worker = WorkReport();
     return Container(
       padding: EdgeInsets.all(4),
       child: Row(
@@ -85,7 +85,6 @@ class CareWorkersWidget extends StatelessWidget {
   }
 }
 
-
 //*********WorkerIconWidget*************
 class WorkerIconWidget extends StatelessWidget {
   WorkerIconWidget({
@@ -93,7 +92,7 @@ class WorkerIconWidget extends StatelessWidget {
     required this.iconData,
   });
 
-  IconData  iconData  ;
+  IconData iconData;
 
   @override
   Widget build(BuildContext context) {
@@ -102,12 +101,10 @@ class WorkerIconWidget extends StatelessWidget {
 
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Icon(iconData,
-            size: 26),
+        child: Icon(iconData, size: 26),
       ),
     );
   }
 }
-
 
 //************WorkCard************

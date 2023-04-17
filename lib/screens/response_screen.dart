@@ -78,7 +78,7 @@ class ResponsePage extends StatelessWidget {
                   // }
                   // else if (workName == 'pqrpqr') {
                   //   cardColor = Colors.red;
-               //   }
+                  //   }
 
                   // else if (workName == 'Medication') {
                   //   colorMedication = Colors.red;

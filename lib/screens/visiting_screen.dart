@@ -12,7 +12,6 @@ Color iconColor3 = Colors.grey;
 Color iconColor4 = Colors.grey;
 Color iconColor5 = Colors.grey;
 
-
 // Color colorMedication = Colors.green;
 // Color colorBodyMap = Colors.green;
 // Color colorFood = Colors.green;
@@ -67,7 +66,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
         //colorMedication = data;
         setState(() {
           //print(colorBodyMap);
-         // msg = data;
+          // msg = data;
           //cardColora = data;
         });
       },
@@ -116,9 +115,12 @@ class _VisitingScreenState extends State<VisitingScreen> {
         color: Colors.purple,
         child: Padding(
           padding: const EdgeInsets.all(5),
-          child: Text('Required', style: TextStyle(
-            color: Colors.white,
-          ),),
+          child: Text(
+            'Required',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
         ),
       ),
     );
@@ -420,8 +422,9 @@ class _VisitingScreenState extends State<VisitingScreen> {
                       borderRadius: BorderRadius.circular(25),
                     ),
                   ),
-                  onPressed: () async{
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ReportPage()));
+                  onPressed: () async {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => ReportPage()));
                   },
                   child: Text('Check out'),
                 ),

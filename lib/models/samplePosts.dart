@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-List<SamplePosts> samplePostsFromJson(String str) => List<SamplePosts>.from(json.decode(str).map((x) => SamplePosts.fromJson(x)));
+List<SamplePosts> samplePostsFromJson(String str) => List<SamplePosts>.from(
+    json.decode(str).map((x) => SamplePosts.fromJson(x)));
 
-String samplePostsToJson(List<SamplePosts> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String samplePostsToJson(List<SamplePosts> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class SamplePosts {
   SamplePosts({
@@ -22,16 +24,16 @@ class SamplePosts {
   String body;
 
   factory SamplePosts.fromJson(Map<String, dynamic> json) => SamplePosts(
-    userId: json["userId"],
-    id: json["id"],
-    title: json["title"],
-    body: json["body"],
-  );
+        userId: json["userId"],
+        id: json["id"],
+        title: json["title"],
+        body: json["body"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "userId": userId,
-    "id": id,
-    "title": title,
-    "body": body,
-  };
+        "userId": userId,
+        "id": id,
+        "title": title,
+        "body": body,
+      };
 }
