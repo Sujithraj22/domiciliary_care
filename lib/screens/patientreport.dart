@@ -183,8 +183,6 @@ class _ReportPageState extends State<ReportPage> {
                                                     worker.workerReportData[index]["workData"][subIndex]["isHouseholdChores"] == true? WorkerIconWidget(iconData: FontAwesomeIcons.screwdriverWrench)  : SizedBox() ,
                                                     worker.workerReportData[index]["workData"][subIndex]["isUnableToDeliverCare"] == true? WorkerIconWidget(iconData: FontAwesomeIcons.ban)  : SizedBox(),
 
-
-
                                                   ],)//worker.samplePosts[subIndex].id.toString()),
                                                   //@formatter:on
                                                 ],
