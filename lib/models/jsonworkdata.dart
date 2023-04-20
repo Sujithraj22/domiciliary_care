@@ -1,10 +1,10 @@
-class MyCalss {
+class MyClass {
   String? dateOfWork;
   List<WorkData>? workData;
 
-  MyCalss({this.dateOfWork, this.workData});
+  MyClass({this.dateOfWork, this.workData});
 
-  MyCalss.fromJson(Map<String, dynamic> json) {
+  MyClass.fromJson(Map<String, dynamic> json) {
     dateOfWork = json['dateOfWork'];
     if (json['workData'] != null) {
       workData = <WorkData>[];
@@ -47,24 +47,24 @@ class WorkData {
 
   WorkData(
       {this.isSaved,
-        this.isMedication,
-        this.isBodyMap,
-        this.isFood,
-        this.isDrinks,
-        this.isPersonalCare,
-        this.isToiletAssistance,
-        this.isRepositioning,
-        this.isCompanionshipRespitCare,
-        this.isLaundry,
-        this.isGroceries,
-        this.isHousework,
-        this.isHouseholdChores,
-        this.isUnableToDeliverCare,
-        this.clockInTime,
-        this.clockOutTime,
-        this.totalTime,
-        this.careWorker,
-        this.careWorkerName});
+      this.isMedication,
+      this.isBodyMap,
+      this.isFood,
+      this.isDrinks,
+      this.isPersonalCare,
+      this.isToiletAssistance,
+      this.isRepositioning,
+      this.isCompanionshipRespitCare,
+      this.isLaundry,
+      this.isGroceries,
+      this.isHousework,
+      this.isHouseholdChores,
+      this.isUnableToDeliverCare,
+      this.clockInTime,
+      this.clockOutTime,
+      this.totalTime,
+      this.careWorker,
+      this.careWorkerName});
 
   WorkData.fromJson(Map<String, dynamic> json) {
     isSaved = json['isSaved'];
