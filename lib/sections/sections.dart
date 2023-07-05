@@ -91,15 +91,11 @@ class WorkerIconWidget extends StatelessWidget {
     super.key,
     required this.iconData,
   });
-
   IconData iconData;
-
   @override
   Widget build(BuildContext context) {
     return Card(
-      // margin: EdgeInsets.all(10),
-
-      child: Padding(
+        child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Icon(iconData, size: 26),
       ),

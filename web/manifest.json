@@ -1,6 +1,6 @@
 {
-    "name": "domiciliary_care",
-    "short_name": "domiciliary_care",
+    "name": "u20x_native",
+    "short_name": "u20x_native",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

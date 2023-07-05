@@ -2,11 +2,10 @@
 
 import 'dart:convert';
 
-import 'package:domiciliary_care/models/samplePosts.dart';
-
+import 'package:u20x_native/model/samplePosts.dart';
 //import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:domiciliary_care/screens/patientreport.dart';
+import 'package:u20x_native/views/dc/patientreport.dart';
 
 class WorkReport {
   String workerName = 'Sujith Raj';

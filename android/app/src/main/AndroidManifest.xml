@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.domiciliary_care">
+    package="com.example.u20x_native">
    <application
-        android:label="domiciliary_care"
+        android:label="u20x_native"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

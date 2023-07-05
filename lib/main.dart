@@ -1,9 +1,10 @@
-import 'package:domiciliary_care/constants/color.dart';
+import 'package:u20x_native/constants/color.dart';
+import 'package:u20x_native/screens/index_screen.dart';
 
-import 'package:domiciliary_care/screens/patientreport.dart';
+import 'package:u20x_native/views/dc/patientreport.dart';
 
-//import 'package:domiciliary_care/screens/response_screen.dart';
-import 'package:domiciliary_care/screens/visiting_screen.dart';
+//import 'package:u20x_native/screens/response_screen.dart';
+import 'package:u20x_native/views/dc/visiting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -30,7 +31,9 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Poppins', primaryColor: themeColor),
       // color to change 265197
-      home: VisitingScreen(),
+      //home: VisitingScreen(),
+      home: IndexScreen(),
+
     );
   }
 }

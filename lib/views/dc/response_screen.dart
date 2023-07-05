@@ -1,10 +1,11 @@
-import 'package:domiciliary_care/constants/color.dart';
-import 'package:domiciliary_care/screens/visiting_screen.dart';
+import 'package:u20x_native/constants/color.dart';
+import 'package:u20x_native/views/dc/visiting_screen.dart';
 import 'package:flutter/material.dart';
-//import 'package:domiciliary_care/models/workreport.dart';
+//import 'package:u20x_native/models/workreport.dart';
 
 class ResponsePage extends StatelessWidget {
   final String workName;
+  String variableReport = 'hi';
 
   ResponsePage({Key? key, required this.workName}) : super(key: key);
 
@@ -73,6 +74,7 @@ class ResponsePage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
+                  variableReport = responseController.text;
                   // if (workName == 'xyzxyz') {
                   //   cardColor = Colors.red;
                   // }
@@ -108,7 +110,7 @@ class ResponsePage extends StatelessWidget {
                   //   colorUnableToDeliverCare = Colors.red;
                   // }
 
-                  print(responseController.text);
+                  print(variableReport);
 
                   Navigator.pop(context, workName);
                 },
