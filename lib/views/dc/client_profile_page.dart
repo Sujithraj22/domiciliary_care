@@ -503,6 +503,7 @@ class _ClientProfilePageState extends State<ClientProfilePage> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
+
                                               Text(
                                                 mClientProfile
                                                     .data!.visitType![0].name

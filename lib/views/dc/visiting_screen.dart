@@ -1,5 +1,6 @@
 // import 'package:domiciliary_care/screens/patientreport.dart';
 // import 'package:domiciliary_care/screens/response_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:u20x_native/model/care_worker_visit_type.dart';
@@ -12,26 +13,6 @@ import 'package:u20x_native/views/dc/response_screen.dart';
 import 'package:u20x_native/views/dc/visit_types_screen.dart';
 
 //import '../models/workreport.dart';
-
-Color iconColor1 = Colors.grey;
-Color iconColor2 = Colors.grey;
-Color iconColor3 = Colors.grey;
-Color iconColor4 = Colors.grey;
-Color iconColor5 = Colors.grey;
-
-// Color colorMedication = Colors.green;
-// Color colorBodyMap = Colors.green;
-// Color colorFood = Colors.green;
-// Color colorDrinks = Colors.green;
-// Color colorPersonalCare = Colors.green;
-// Color colorToliletAssistance = Colors.green;
-// Color colorRepositioning = Colors.green;
-// Color colorCompanionship = Colors.green;
-// Color colorLaundry = Colors.green;
-// Color colorGroceries = Colors.green;
-// Color colorHousework = Colors.green;
-// Color colorHouseholdChores = Colors.green;
-// Color colorUnableToDeliverCare = Colors.green;
 
 //bool requiredBool = true;
 class VisitingScreen extends StatefulWidget {
@@ -61,7 +42,27 @@ class _VisitingScreenState extends State<VisitingScreen> {
   String variableRank = '0';
   String workName = '';
 
+  Color colorMedication = Colors.white;
+  Color colorBodyMap = Colors.white;
+  Color colorFood = Colors.white;
+  Color colorDrinks = Colors.white;
+  Color colorPersonalCare = Colors.white;
+  Color colorToiletAssistance = Colors.white;
+  Color colorRepositioning = Colors.white;
+  Color colorCompanionship = Colors.white;
+  Color colorLaundry = Colors.white;
+  Color colorGroceries = Colors.white;
+  Color colorHousework = Colors.white;
+  Color colorHouseholdChores = Colors.white;
+  Color colorUnableToDeliverCare = Colors.white;
 
+  Color iconColor1 = Colors.grey;
+  Color iconColor2 = Colors.grey;
+  Color iconColor3 = Colors.grey;
+  Color iconColor4 = Colors.grey;
+  Color iconColor5 = Colors.grey;
+
+  bool _toggleValue = false;
   GestureDetector cardFunction(
     BuildContext context, {
     required String text1,
@@ -96,9 +97,35 @@ class _VisitingScreenState extends State<VisitingScreen> {
             ),
           );
           setState(() {
-            workName = data;
-           // print($workName);
+            if (data == 'Medication') {
+              colorMedication = kDC4Color;
+            } else if (data == 'BodyMap') {
+              colorBodyMap = kDC4Color;
+            } else if (data == 'Food') {
+              colorFood = kDC4Color;
+            } else if (data == 'Drinks') {
+              colorDrinks = kDC4Color;
+            } else if (data == 'Personal care') {
+              colorPersonalCare = kDC4Color;
+            } else if (data == 'Toilet assistance') {
+              colorToiletAssistance = kDC4Color;
+            } else if (data == 'Repositioning') {
+              colorRepositioning = kDC4Color;
+            } else if (data == 'Companionship / respite care') {
+              colorCompanionship = kDC4Color;
+            } else if (data == 'Laundry') {
+              colorLaundry = kDC4Color;
+            } else if (data == 'Groceries') {
+              colorGroceries = kDC4Color;
+            } else if (data == 'Housework') {
+              colorHousework = kDC4Color;
+            } else if (data == 'Household chores') {
+              colorHouseholdChores = kDC4Color;
+            } else if (data == 'Unable to deliver care') {
+              colorUnableToDeliverCare = kDC4Color;
+            }
           });
+          print(data);
         }
       },
       child: Stack(
@@ -109,7 +136,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
             color: cardColor,
             shape: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(6)),
-              borderSide: BorderSide(color: Colors.purple, width: 3.5),
+              borderSide: BorderSide(color: kDC4Color, width: 3.5),
             ),
             //color: cardFunction(),
             child: Center(
@@ -143,7 +170,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
     return Visibility(
       visible: requiredBool,
       child: Card(
-        color: Colors.purple,
+        color: kDC4Color,
         child: Padding(
           padding: const EdgeInsets.all(5),
           child: Text(
@@ -227,16 +254,16 @@ class _VisitingScreenState extends State<VisitingScreen> {
                     controller: TextEditingController(text: variable1),
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(width: 2, color: Colors.purple),
+                        borderSide: BorderSide(width: 2, color: kDC4Color),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(width: 2, color: Colors.purple),
+                        borderSide: BorderSide(width: 2, color: kDC4Color),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       suffixText: 'Edit',
                       suffixStyle: TextStyle(
-                        color: Colors.purple,
+                        color: kDC4Color,
                       ),
                     ),
                   ),
@@ -271,16 +298,16 @@ class _VisitingScreenState extends State<VisitingScreen> {
                     },
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(width: 2, color: Colors.purple),
+                        borderSide: BorderSide(width: 2, color: kDC4Color),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(width: 2, color: Colors.purple),
+                        borderSide: BorderSide(width: 2, color: kDC4Color),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       suffixText: 'Edit',
                       suffixStyle: TextStyle(
-                        color: Colors.purple,
+                        color: kDC4Color,
                       ),
                     ),
                   ),
@@ -304,7 +331,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                             variableYesNo = 'NO';
                           });
                         },
-                        color: Colors.purple,
+                        color: kDC4Color,
                         icon: isYes
                             ? Icon(Icons.circle_outlined)
                             : Icon(Icons.check_circle)),
@@ -322,7 +349,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                             variableYesNo = 'YES';
                           });
                         },
-                        color: Colors.purple,
+                        color: kDC4Color,
                         icon: !isYes
                             ? Icon(Icons.circle_outlined)
                             : Icon(Icons.check_circle)),
@@ -373,7 +400,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         helpType: DCHelpType.medication,
                         text1: 'Medication',
                         text2: '',
-                        cardColor: workName == 'Medication'? kDCBackColor : kDC4Color ,
+                        cardColor: colorMedication,
                         iconWork: FontAwesomeIcons.prescriptionBottleMedical),
                     //title: 'Body Map', icon: FontAwesomeIcons.person, color: colorBodyMap
                     cardFunction(context,
@@ -382,7 +409,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         helpType: DCHelpType.bodyMapping,
                         text1: 'Body Map',
                         text2: '',
-                        cardColor: kDC4Color,
+                        cardColor: colorBodyMap,
                         iconWork: FontAwesomeIcons.person),
                     //title: 'Food', icon: FontAwesomeIcons.utensils, color: colorFood
                     cardFunction(context,
@@ -391,7 +418,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         helpType: DCHelpType.generalNote,
                         text1: 'Food',
                         text2: '',
-                        cardColor: kDC4Color,
+                        cardColor: colorFood,
                         iconWork: FontAwesomeIcons.utensils),
                     //title: 'Drinks', icon: FontAwesomeIcons.mugSaucer,color: colorDrinks
                     cardFunction(context,
@@ -400,7 +427,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         helpType: DCHelpType.generalNote,
                         text1: 'Drinks',
                         text2: '',
-                        cardColor: kDC4Color,
+                        cardColor: colorDrinks,
                         iconWork: FontAwesomeIcons.mugSaucer),
                     //title: 'Personal care', icon: FontAwesomeIcons.bath,color: colorPersonalCare
                     cardFunction(context,
@@ -409,16 +436,16 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         helpType: DCHelpType.generalNote,
                         text1: 'Personal care',
                         text2: '',
-                        cardColor: kDC4Color,
+                        cardColor: colorPersonalCare,
                         iconWork: FontAwesomeIcons.bath),
-                    //title: 'Toilet assistance', icon: FontAwesomeIcons.toilet,color: colorToliletAssistance
+                    //title: 'Toilet assistance', icon: FontAwesomeIcons.toilet,color: colorToiletAssistance
                     cardFunction(context,
                         requiredBool: variable3.any(
                             (item) => item.taskId.toString().contains('6')),
                         helpType: DCHelpType.generalNote,
                         text1: 'Toilet assistance',
                         text2: '',
-                        cardColor: kDC4Color,
+                        cardColor: colorToiletAssistance,
                         iconWork: FontAwesomeIcons.toilet),
                     //title: 'Repositioning', icon: FontAwesomeIcons.bed,color: colorRepositioning
                     cardFunction(context,
@@ -427,7 +454,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         helpType: DCHelpType.generalNote,
                         text1: 'Repositioning',
                         text2: '',
-                        cardColor: kDC4Color,
+                        cardColor: colorRepositioning,
                         iconWork: FontAwesomeIcons.bed),
                     //title: 'Companionship / respite care', icon: FontAwesomeIcons.peopleGroup,color: colorCompanionship
                     cardFunction(context,
@@ -436,7 +463,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         helpType: DCHelpType.generalNote,
                         text1: 'Companionship /',
                         text2: ' respite care',
-                        cardColor: kDC4Color,
+                        cardColor: colorCompanionship,
                         iconWork: FontAwesomeIcons.peopleGroup),
                     //title: 'Laundry', icon: Icons.local_laundry_service_rounded,color: colorLaundry
                     cardFunction(context,
@@ -445,7 +472,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         helpType: DCHelpType.generalNote,
                         text1: 'Laundry',
                         text2: '',
-                        cardColor: kDC4Color,
+                        cardColor: colorLaundry,
                         iconWork: Icons.local_laundry_service_rounded),
                     //title: 'Groceries', icon: FontAwesomeIcons.cartShopping,color: colorGroceries
                     cardFunction(context,
@@ -454,7 +481,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         helpType: DCHelpType.generalNote,
                         text1: 'Groceries',
                         text2: '',
-                        cardColor: kDC4Color,
+                        cardColor: colorGroceries,
                         iconWork: FontAwesomeIcons.cartShopping),
                     //title: 'Housework', icon: FontAwesomeIcons.broom,color: colorHousework
                     cardFunction(context,
@@ -463,7 +490,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         helpType: DCHelpType.generalNote,
                         text1: 'Housework',
                         text2: '',
-                        cardColor: kDC4Color,
+                        cardColor: colorHousework,
                         iconWork: FontAwesomeIcons.broom),
                     //title: 'Household chores', icon: FontAwesomeIcons.screwdriverWrench,color: colorHouseholdChores
                     cardFunction(context,
@@ -472,7 +499,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         helpType: DCHelpType.generalNote,
                         text1: 'Household chores',
                         text2: '',
-                        cardColor: kDC4Color,
+                        cardColor: colorHouseholdChores,
                         iconWork: FontAwesomeIcons.screwdriverWrench),
                     //title: 'Unable to deliver care', icon: FontAwesomeIcons.ban,color: colorUnableToDeliverCare
                     cardFunction(context,
@@ -481,7 +508,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                         helpType: DCHelpType.generalNote,
                         text1: 'Unable to deliver care',
                         text2: '',
-                        cardColor: kDC4Color,
+                        cardColor: colorUnableToDeliverCare,
                         iconWork: FontAwesomeIcons.ban),
                   ],
                 ),
@@ -624,60 +651,63 @@ class _VisitingScreenState extends State<VisitingScreen> {
                 ),
                 SizedBox(height: 50),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(Icons.warning_amber, size: 35, color: Colors.red),
                     SizedBox(width: 15),
                     Text(
-                      'Raise and alert for this report?',
+                      'Raise an alert for this report?',
                       style: TextStyle(fontSize: 18),
                     ),
-                    SizedBox(width: 20),
+                    SizedBox(width: 5),
                     Transform.scale(
-                      scale: 1.5,
-                      child: Radio(
+                      scale: 0.8,
+                      child: CupertinoSwitch(
                           activeColor: kDC3Color,
-                          value: 1,
-                          groupValue: selectedValue,
-                          onChanged: (value) {
-                            setState(() {
-                              selectedValue = 1;
-                            });
-                          }),
+                          value: _toggleValue,
+                        onChanged: (value) {
+                          setState(() {
+                            _toggleValue = value;
+                          });
+                        },
+
+                      ),
                     ),
+
                   ],
                 ),
                 SizedBox(height: 20),
                 Visibility(
-
-                  child: selectedValue == 1? Column(
-                    children: [
-                      Text(
-                        'Why are you raising this alert?(required)',
-                        style: TextStyle(fontWeight: FontWeight.normal, fontSize: 20),
-                      ),
-                      SizedBox(height: 15),
-                      TextField(
-                        maxLines: 8,
-                        controller: variableAlert,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          hintText: 'Leave notes about this alert',
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
-
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 3, color: Colors.red),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 50),
-                    ],
-                  ): SizedBox(height: 30),
+                  child: _toggleValue == true
+                      ? Column(
+                          children: [
+                            Text(
+                              'Why are you raising this alert?(required)',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.normal, fontSize: 20),
+                            ),
+                            SizedBox(height: 15),
+                            TextField(
+                              maxLines: 8,
+                              controller: variableAlert,
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.white,
+                                hintText: 'Leave notes about this alert',
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(width: 3, color: Colors.red),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 50),
+                          ],
+                        )
+                      : SizedBox(height: 30),
                 ),
-
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: kDC3Color,
@@ -690,9 +720,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => ReportPage()));
                     saveVisitDetails();
-                    setState(() {
-
-                    });
+                    setState(() {});
                   },
                   child: Text('Check out'),
                 ),
