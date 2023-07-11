@@ -1,5 +1,6 @@
 import 'package:u20x_native/constants/color.dart';
 import 'package:u20x_native/screens/index_screen.dart';
+import 'package:u20x_native/util/constants.dart';
 
 import 'package:u20x_native/views/dc/patientreport.dart';
 
@@ -29,7 +30,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Poppins', primaryColor: themeColor),
+      theme: ThemeData(fontFamily: 'Poppins', primaryColor: kDC4Color),
       // color to change 265197
       //home: VisitingScreen(),
       home: IndexScreen(),

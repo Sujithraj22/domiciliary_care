@@ -328,7 +328,8 @@ class _ClientProfilePageState extends State<ClientProfilePage> {
                                               .data!.medications!.length,
                                           itemBuilder: (context, index) {
                                             return Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Row(children: [
                                                   Text(
@@ -503,7 +504,6 @@ class _ClientProfilePageState extends State<ClientProfilePage> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-
                                               Text(
                                                 mClientProfile
                                                     .data!.visitType![0].name

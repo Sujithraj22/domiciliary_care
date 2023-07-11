@@ -5,6 +5,7 @@ import 'package:u20x_native/model/care_worker_visit_type.dart';
 import '../model/care_worker_report.dart';
 import '../model/client_profile.dart';
 import '../model/jsonworkdata.dart';
+import '../model/medication.dart';
 
 Future<ClientProfile> fetchClientProfile() async {
   final myResponse = await http.get(Uri.parse('https://raw.githubusercontent.com/rovin01/DCAPI/main/client_profile'), headers: {
@@ -45,5 +46,17 @@ Future<List<CareWorkerReport>> fetchWorkerReport() async {
     return workerReport;
   }else{
     throw Exception('Failed to fetch Care Worker Data');
+  }
+}
+Future<Medication> fetchMedication() async {
+  final myResponse = await http.get(Uri.parse('https://raw.githubusercontent.com/rovin01/DCAPI/main/medication'), headers: {
+    "source": "mobile",
+    "Content-Type": "application/json",
+  });
+  if (myResponse.statusCode == 200) {
+    final Map<String, dynamic> parsed = json.decode(myResponse.body);
+    return Medication.fromJson(parsed);
+  }else{
+    throw Exception('Failed to fetch Medication data');
   }
 }

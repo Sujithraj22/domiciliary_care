@@ -22,8 +22,8 @@ class ReportPage extends StatefulWidget {
 }
 
 class _ReportPageState extends State<ReportPage> {
-  WorkReport worker = WorkReport();
-  int i = 0;
+  //WorkReport worker = WorkReport();
+ // int i = 0;
 
   //List<dynamic> users = [];
 
