@@ -18,16 +18,32 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
   bool _isEvening = false;
   bool _isBedTime = false;
   bool _isAsNeeded = false;
-  bool isNotTaken = false;
-  bool isTaken = false;
+
+  //bool isNotTaken = false;
+  //bool isTaken = false;
   // bool isNotTakenExpanded = false;
   // bool isTakenExpanded = false;
-  // late List<bool> isNotTakenExpandedList = [true, false];
-  // late List<bool> isTakenExpandedList= [true, false];
-  List<bool> isNotTakenExpandedList = List.generate(10, (index) => false);
-  List<bool> isTakenExpandedList = List.generate(10, (index) => false);
-  // List<bool>? isNotTakenExpandedList;
-  // List<bool>? isTakenExpandedList;
+  // late List<bool> isMorningNotTakenExpandedList = [true, false];
+  // late List<bool> isMorningTakenExpandedList= [true, false];
+  List<bool> isMorningNotTakenExpandedList =
+      List.generate(10, (index) => false);
+  List<bool> isLunchtimeNotTakenExpandedList =
+      List.generate(10, (index) => false);
+  List<bool> isEveningNotTakenExpandedList =
+      List.generate(10, (index) => false);
+  List<bool> isBedtimeNotTakenExpandedList =
+      List.generate(10, (index) => false);
+  List<bool> isAsneededNotTakenExpandedList =
+      List.generate(10, (index) => false);
+
+  List<bool> isMorningTakenExpandedList = List.generate(10, (index) => false);
+  List<bool> isLunchtimeTakenExpandedList = List.generate(10, (index) => false);
+  List<bool> isEveningTakenExpandedList = List.generate(10, (index) => false);
+  List<bool> isBedtimeTakenExpandedList = List.generate(10, (index) => false);
+  List<bool> isAsneededTakenExpandedList = List.generate(10, (index) => false);
+
+  // List<bool>? isMorningNotTakenExpandedList;
+  // List<bool>? isMorningTakenExpandedList;
   TextEditingController controllerNotTaken = TextEditingController();
   TextEditingController controllerTaken = TextEditingController();
 
@@ -38,18 +54,17 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
   void initState() {
     super.initState();
     _medication = fetchMedication();
-     }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SafeArea(
         child: SingleChildScrollView(
           child: FutureBuilder<Medication>(
               future: _medication,
-              builder:
-                  (BuildContext context, AsyncSnapshot<Medication> mMedication) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<Medication> mMedication) {
                 switch (mMedication.connectionState) {
                   case ConnectionState.none:
                   case ConnectionState.waiting:
@@ -144,29 +159,34 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Icon(Icons.wb_twighlight),
+                                                    Icon(Icons.wb_twighlight,color: mMedication.data!.morning!.length==0?Colors.grey:Colors.black),
                                                     Text(
                                                       "Morning",
                                                       style: TextStyle(
                                                           fontSize: 20,
                                                           fontWeight:
-                                                              FontWeight.bold),
+                                                              FontWeight.bold,color: mMedication.data!.morning!.length==0?Colors.grey:Colors.black),
                                                     ),
                                                     Text(
-                                                      "${mMedication.data!.morning!.length}"+" meds",
+                                                      "${mMedication.data!.morning!.length == 0 ? "No" : "${mMedication.data!.morning!.length}"}" +
+                                                          " meds",
                                                       style: TextStyle(
                                                           fontSize: 20,
                                                           color: Colors.grey),
                                                     ),
-                                                    Icon(
+                                                    mMedication.data!.morning!
+                                                        .length !=
+                                                        0
+                                                        ? Icon(
                                                       _isMorning
                                                           ? Icons
-                                                              .keyboard_arrow_up
+                                                          .keyboard_arrow_up
                                                           : Icons
-                                                              .keyboard_arrow_down_sharp,
+                                                          .keyboard_arrow_down_sharp,
                                                       size: 30,
                                                       color: kDC3Color,
                                                     )
+                                                        : SizedBox(width: 25),
                                                   ],
                                                 ),
                                               ),
@@ -176,247 +196,292 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
                                                   children: [
                                                     ListView.builder(
                                                       shrinkWrap: true,
-                                                        itemCount: mMedication.data!.morning!.length,
-                                                        physics: NeverScrollableScrollPhysics(),
-                                                        itemBuilder:
-                                                      (context,
-                                                          index) {
-                                                        // isNotTakenExpandedList[index] = !isNotTakenExpandedList[index];
-                                                        // isTakenExpandedList[index] = false;
-                                                        // isNotTakenExpandedList = List.generate(10, (index) => false);
-                                                        // isTakenExpandedList = List.generate(10, (index) => false);
-                                                    return Padding(
-                                                      padding: const EdgeInsets.all(8.0),
-                                                      child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            "${mMedication.data!.morning![index].medicationName}",
-                                                            style: TextStyle(
-                                                                fontSize:
-                                                                    20,
-                                                                fontWeight:
-                                                                    FontWeight.bold),
-                                                          ),
-                                                          Text(
-                                                            "${mMedication.data!.morning![index].dosage}",
-                                                            style: TextStyle(
-                                                                fontSize:
-                                                                    16),
-                                                          ),
-                                                          Row(
+                                                      itemCount: mMedication
+                                                          .data!
+                                                          .morning!
+                                                          .length,
+                                                      physics:
+                                                          NeverScrollableScrollPhysics(),
+                                                      itemBuilder:
+                                                          (context, index) {
+                                                        // isMorningNotTakenExpandedList[index] = !isMorningNotTakenExpandedList[index];
+                                                        // isMorningTakenExpandedList[index] = false;
+                                                        // isMorningNotTakenExpandedList = List.generate(10, (index) => false);
+                                                        // isMorningTakenExpandedList = List.generate(10, (index) => false);
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
                                                             children: [
                                                               Text(
-                                                                "${mMedication.data!.morning![index].note1}"+"${mMedication.data!.morning![index].note2}",
+                                                                "${mMedication.data!.morning![index].medicationName}",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        20,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                              Text(
+                                                                "${mMedication.data!.morning![index].dosage}",
                                                                 style: TextStyle(
                                                                     fontSize:
                                                                         16),
                                                               ),
-                                                            ],
-                                                          ),
-                                                          SizedBox(
-                                                              height:
-                                                                  10),
-                                                          Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceEvenly,
-                                                            children: [
-                                                              Container(
-                                                                width:
-                                                                    150,
-                                                                height:
-                                                                    50,
-                                                                child:
-                                                                    ElevatedButton(
-                                                                  onPressed:
-                                                                      () {
-                                                                    setState(() {
-
-                                                                      isNotTakenExpandedList[index] = !isNotTakenExpandedList[index];
-                                                                      //isNotTakenExpandedList[index] = true;
-                                                                      isTakenExpandedList[index] = false;
-                                                                    });
-                                                                  },
-                                                                  style:
-                                                                      ElevatedButton.styleFrom(
-                                                                    backgroundColor: isNotTakenExpandedList[index]
-                                                                        ? Colors.red
-                                                                        : Colors.white,
-                                                                    shape:
-                                                                        RoundedRectangleBorder(
-                                                                      borderRadius: BorderRadius.circular(20),
-                                                                      side: BorderSide(color: Colors.red),
-                                                                    ),
+                                                              Row(
+                                                                children: [
+                                                                  Text(
+                                                                    "${mMedication.data!.morning![index].note1}" +
+                                                                        "${mMedication.data!.morning![index].note2}",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            16),
                                                                   ),
-                                                                  child: Text(
-                                                                      'Not taken',
-                                                                      style: TextStyle(color: isNotTakenExpandedList[index] ? Colors.white : Colors.red)),
-                                                                ),
+                                                                ],
                                                               ),
                                                               SizedBox(
-                                                                  width:
-                                                                      0),
-                                                              Container(
-                                                                width:
-                                                                    150,
-                                                                height:
-                                                                    50,
-                                                                child:
-                                                                    ElevatedButton(
-                                                                  onPressed:
-                                                                      () {
-                                                                    setState(() {
-                                                                      isTakenExpandedList[index] = !isTakenExpandedList[index];
-                                                                      isNotTakenExpandedList[index] = false;
-                                                                    });
-                                                                  },
-                                                                  style:
-                                                                      ElevatedButton.styleFrom(
-                                                                    backgroundColor: isTakenExpandedList[index]
-                                                                        ? Colors.green
-                                                                        : Colors.white,
-                                                                    shape:
-                                                                        RoundedRectangleBorder(
-                                                                      borderRadius: BorderRadius.circular(20),
-                                                                      side: BorderSide(color: isTakenExpandedList[index] ? Colors.green : Colors.red),
+                                                                  height: 10),
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceEvenly,
+                                                                children: [
+                                                                  Container(
+                                                                    width: 150,
+                                                                    height: 50,
+                                                                    child:
+                                                                        ElevatedButton(
+                                                                      onPressed:
+                                                                          () {
+                                                                        setState(
+                                                                            () {
+                                                                          isMorningNotTakenExpandedList[index] =
+                                                                              !isMorningNotTakenExpandedList[index];
+                                                                          //isMorningNotTakenExpandedList[index] = true;
+                                                                          isMorningTakenExpandedList[index] =
+                                                                              false;
+                                                                        });
+                                                                      },
+                                                                      style: ElevatedButton
+                                                                          .styleFrom(
+                                                                        backgroundColor: isMorningNotTakenExpandedList[index]
+                                                                            ? Colors.red
+                                                                            : Colors.white,
+                                                                        shape:
+                                                                            RoundedRectangleBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(20),
+                                                                          side:
+                                                                              BorderSide(color: Colors.red),
+                                                                        ),
+                                                                      ),
+                                                                      child: Row(
+                                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                        children: [
+                                                                          Icon(isMorningNotTakenExpandedList[index] ?Icons.check_circle_outline_rounded:Icons.close_rounded, color:isMorningNotTakenExpandedList[index] ? Colors.white : Colors.red),
+                                                                          Text(
+                                                                              'Not taken',
+                                                                              style:
+                                                                                  TextStyle(color: isMorningNotTakenExpandedList[index] ? Colors.white : Colors.red)),
+                                                                        ],
+                                                                      ),
                                                                     ),
                                                                   ),
-                                                                  child: Text(
-                                                                      'Taken',
-                                                                      style: TextStyle(color: isTakenExpandedList[index] ? Colors.white : Colors.red)),
-                                                                ),
+                                                                  SizedBox(
+                                                                      width: 0),
+                                                                  Container(
+                                                                    width: 150,
+                                                                    height: 50,
+                                                                    child:
+                                                                        ElevatedButton(
+                                                                      onPressed:
+                                                                          () {
+                                                                        setState(
+                                                                            () {
+                                                                          isMorningTakenExpandedList[index] =
+                                                                              !isMorningTakenExpandedList[index];
+                                                                          isMorningNotTakenExpandedList[index] =
+                                                                              false;
+                                                                        });
+                                                                      },
+                                                                      style: ElevatedButton
+                                                                          .styleFrom(
+                                                                        backgroundColor: isMorningTakenExpandedList[index]
+                                                                            ? Colors.green
+                                                                            : Colors.white,
+                                                                        shape:
+                                                                            RoundedRectangleBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(20),
+                                                                          side:
+                                                                              BorderSide(color: isMorningTakenExpandedList[index] ? Colors.green : Colors.green),
+                                                                        ),
+                                                                      ),
+                                                                      child: Row(
+                                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                        children: [
+                                                                          Icon(isMorningTakenExpandedList[index] ?Icons.check_circle_outline_rounded:Icons.close_rounded, color:isMorningTakenExpandedList[index] ? Colors.white : Colors.green),
+                                                                          Text(
+                                                                              'Taken',
+                                                                              style:
+                                                                                  TextStyle(color: isMorningTakenExpandedList[index] ? Colors.white : Colors.green)),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
 
+                                                              SizedBox(
+                                                                  height: 10),
+                                                              Visibility(
+                                                                visible:
+                                                                    isMorningNotTakenExpandedList[
+                                                                        index],
+                                                                child: Column(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    SizedBox(
+                                                                      height:
+                                                                          20,
+                                                                    ),
+                                                                    Text(
+                                                                      'Notes (mandatory)',
+                                                                      style: TextStyle(
+                                                                          fontWeight: FontWeight
+                                                                              .normal,
+                                                                          fontSize:
+                                                                              20),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            15),
+                                                                    TextField(
+                                                                      maxLines:
+                                                                          2,
+                                                                      controller:
+                                                                          controllerNotTaken,
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                        filled:
+                                                                            true,
+                                                                        fillColor:
+                                                                            Colors.white,
+                                                                        hintText:
+                                                                            '',
+                                                                        border:
+                                                                            OutlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(color: Colors.black),
+                                                                        ),
+                                                                        focusedBorder:
+                                                                            OutlineInputBorder(
+                                                                          borderSide: BorderSide(
+                                                                              width: 1,
+                                                                              color: Colors.grey),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            25),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              Visibility(
+                                                                visible:
+                                                                    isMorningTakenExpandedList[
+                                                                        index],
+                                                                child: Column(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    SizedBox(
+                                                                      height:
+                                                                          20,
+                                                                    ),
+                                                                    Text(
+                                                                      'Notes (optional)',
+                                                                      style: TextStyle(
+                                                                          fontWeight: FontWeight
+                                                                              .normal,
+                                                                          fontSize:
+                                                                              20),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            15),
+                                                                    TextField(
+                                                                      maxLines:
+                                                                          2,
+                                                                      controller:
+                                                                          controllerTaken,
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                        filled:
+                                                                            true,
+                                                                        fillColor:
+                                                                            Colors.white,
+                                                                        hintText:
+                                                                            '',
+                                                                        border:
+                                                                            OutlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(color: Colors.black),
+                                                                        ),
+                                                                        focusedBorder:
+                                                                            OutlineInputBorder(
+                                                                          borderSide: BorderSide(
+                                                                              width: 1,
+                                                                              color: Colors.grey),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            25),
+                                                                  ],
+                                                                ),
+                                                              ),
+
+                                                              Container(
+                                                                decoration: BoxDecoration(
+                                                                    color: Colors
+                                                                        .black12,
+                                                                    border: Border.all(
+                                                                     color: Colors.grey,
+                                                                    ),
+                                                                    borderRadius: BorderRadius.all(Radius.circular(20))
+                                                                ),
+                                                                width: double
+                                                                    .infinity,
+
+                                                                child: Center(
+                                                                  child: Padding(
+                                                                    padding: const EdgeInsets.all(8.0),
+                                                                    child: Text(
+                                                                      "${mMedication.data!.morning![index].previousNote}",
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                          14,
+                                                                          color: Colors
+                                                                              .black38),
+                                                                    ),
+                                                                  ),
+                                                                ),
                                                               ),
                                                             ],
                                                           ),
-                                                          SizedBox(height: 10,),
-                                                          Container(
-                                                            width: double.infinity,
-                                                            color: Colors.black12,
-                                                            child: Center(
-                                                              child: Text(
-                                                                "${mMedication.data!.morning![index].previousNote}",
-                                                                style: TextStyle(
-                                                                    fontSize: 14,
-                                                                    color: Colors
-                                                                        .black38),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          SizedBox(
-                                                              height:
-                                                                  10),
-                                                          Visibility(
-                                                            visible:
-                                                                isNotTakenExpandedList[index],
-                                                            child:
-                                                                Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                SizedBox(
-                                                                  height:
-                                                                      20,
-                                                                ),
-                                                                Text(
-                                                                  'Notes (mandatory)',
-                                                                  style: TextStyle(
-                                                                      fontWeight: FontWeight.normal,
-                                                                      fontSize: 20),
-                                                                ),
-                                                                SizedBox(
-                                                                    height:
-                                                                        15),
-                                                                TextField(
-                                                                  maxLines:
-                                                                      2,
-                                                                  controller:
-                                                                      controllerNotTaken,
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    filled:
-                                                                        true,
-                                                                    fillColor:
-                                                                        Colors.white,
-                                                                    hintText:
-                                                                        '',
-                                                                    border:
-                                                                        OutlineInputBorder(
-                                                                      borderSide: BorderSide(color: Colors.black),
-                                                                    ),
-                                                                    focusedBorder:
-                                                                        OutlineInputBorder(
-                                                                      borderSide: BorderSide(width: 1, color: Colors.grey),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                SizedBox(
-                                                                    height:
-                                                                        50),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Visibility(
-                                                            visible:
-                                                                isTakenExpandedList[index],
-                                                            child:
-                                                                Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                SizedBox(
-                                                                  height:
-                                                                      20,
-                                                                ),
-                                                                Text(
-                                                                  'Notes (optional)',
-                                                                  style: TextStyle(
-                                                                      fontWeight: FontWeight.normal,
-                                                                      fontSize: 20),
-                                                                ),
-                                                                SizedBox(
-                                                                    height:
-                                                                        15),
-                                                                TextField(
-                                                                  maxLines:
-                                                                      2,
-                                                                  controller:
-                                                                      controllerTaken,
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    filled:
-                                                                        true,
-                                                                    fillColor:
-                                                                        Colors.white,
-                                                                    hintText:
-                                                                        '',
-                                                                    border:
-                                                                        OutlineInputBorder(
-                                                                      borderSide: BorderSide(color: Colors.black),
-                                                                    ),
-                                                                    focusedBorder:
-                                                                        OutlineInputBorder(
-                                                                      borderSide: BorderSide(width: 1, color: Colors.grey),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                SizedBox(
-                                                                    height:
-                                                                        50),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    );
-                                                        },
-                                                      ),
-
+                                                        );
+                                                      },
+                                                    ),
                                                   ],
                                                 ),
                                               ),
@@ -432,6 +497,376 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
                                 //**Evening
                               ],
                             ),
+                            //Lunchtime
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                      color: kDCWhiteColor,
+                                      borderRadius: BorderRadius.circular(10),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Color(0xFFd8dbe0),
+                                          offset: Offset(1, 1),
+                                          blurRadius: 5,
+                                          spreadRadius: 2,
+                                        )
+                                      ],
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              _isLunchtime = !_isLunchtime;
+                                            });
+                                          },
+                                          //**inside builder
+                                          child: Column(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Icon(Icons.wb_sunny_rounded,color: mMedication.data!.lunchTime!.length==0?Colors.grey:Colors.black),
+                                                    Text(
+                                                      "Lunchtime",
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          fontWeight:
+                                                              FontWeight.bold,color: mMedication.data!.lunchTime!.length==0?Colors.grey:Colors.black),
+                                                    ),
+                                                    Text(
+                                                      "${mMedication.data!.lunchTime!.length == 0 ? "No" : "${mMedication.data!.lunchTime!.length}"}" +
+                                                          " meds",
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          color: Colors.grey),
+                                                    ),
+                                                    mMedication.data!.lunchTime!
+                                                                .length !=
+                                                            0
+                                                        ? Icon(
+                                                            _isLunchtime
+                                                                ? Icons
+                                                                    .keyboard_arrow_up
+                                                                : Icons
+                                                                    .keyboard_arrow_down_sharp,
+                                                            size: 30,
+                                                            color: kDC3Color,
+                                                          )
+                                                        : SizedBox(width: 25),
+                                                  ],
+                                                ),
+                                              ),
+                                              Visibility(
+                                                visible: _isLunchtime,
+                                                child: Column(
+                                                  children: [
+                                                    ListView.builder(
+                                                      shrinkWrap: true,
+                                                      itemCount: mMedication
+                                                          .data!
+                                                          .lunchTime!
+                                                          .length,
+                                                      physics:
+                                                          NeverScrollableScrollPhysics(),
+                                                      itemBuilder:
+                                                          (context, index) {
+                                                        // isMorningNotTakenExpandedList[index] = !isMorningNotTakenExpandedList[index];
+                                                        // isMorningTakenExpandedList[index] = false;
+                                                        // isMorningNotTakenExpandedList = List.generate(10, (index) => false);
+                                                        // isMorningTakenExpandedList = List.generate(10, (index) => false);
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                "${mMedication.data!.lunchTime![index].medicationName}",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        20,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                              Text(
+                                                                "${mMedication.data!.lunchTime![index].dosage}",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        16),
+                                                              ),
+                                                              Row(
+                                                                children: [
+                                                                  Text(
+                                                                    "${mMedication.data!.lunchTime![index].note1}" +
+                                                                        "${mMedication.data!.lunchTime![index].note2}",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            16),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              SizedBox(
+                                                                  height: 10),
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceEvenly,
+                                                                children: [
+                                                                  Container(
+                                                                    width: 150,
+                                                                    height: 50,
+                                                                    child:
+                                                                    ElevatedButton(
+                                                                      onPressed:
+                                                                          () {
+                                                                        setState(
+                                                                                () {
+                                                                              isLunchtimeNotTakenExpandedList[index] =
+                                                                              !isLunchtimeNotTakenExpandedList[index];
+                                                                              //isEveningNotTakenExpandedList[index] = true;
+                                                                              isLunchtimeTakenExpandedList[index] =
+                                                                              false;
+                                                                            });
+                                                                      },
+                                                                      style: ElevatedButton
+                                                                          .styleFrom(
+                                                                        backgroundColor: isLunchtimeNotTakenExpandedList[index]
+                                                                            ? Colors.red
+                                                                            : Colors.white,
+                                                                        shape:
+                                                                        RoundedRectangleBorder(
+                                                                          borderRadius:
+                                                                          BorderRadius.circular(20),
+                                                                          side:
+                                                                          BorderSide(color: Colors.red),
+                                                                        ),
+                                                                      ),
+                                                                      child: Row(
+                                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                        children: [
+                                                                          Icon(isLunchtimeNotTakenExpandedList[index] ?Icons.check_circle_outline_rounded:Icons.close_rounded, color:isMorningNotTakenExpandedList[index] ? Colors.white : Colors.red),
+                                                                          Text(
+                                                                              'Not taken',
+                                                                              style:
+                                                                              TextStyle(color: isLunchtimeNotTakenExpandedList[index] ? Colors.white : Colors.red)),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                      width: 0),
+                                                                  Container(
+                                                                    width: 150,
+                                                                    height: 50,
+                                                                    child:
+                                                                    ElevatedButton(
+                                                                      onPressed:
+                                                                          () {
+                                                                        setState(
+                                                                                () {
+                                                                              isLunchtimeTakenExpandedList[index] =
+                                                                              !isLunchtimeTakenExpandedList[index];
+                                                                              isLunchtimeNotTakenExpandedList[index] =
+                                                                              false;
+                                                                            });
+                                                                      },
+                                                                      style: ElevatedButton
+                                                                          .styleFrom(
+                                                                        backgroundColor: isLunchtimeTakenExpandedList[index]
+                                                                            ? Colors.green
+                                                                            : Colors.white,
+                                                                        shape:
+                                                                        RoundedRectangleBorder(
+                                                                          borderRadius:
+                                                                          BorderRadius.circular(20),
+                                                                          side:
+                                                                          BorderSide(color: isLunchtimeTakenExpandedList[index] ? Colors.green : Colors.green),
+                                                                        ),
+                                                                      ),
+                                                                      child: Row(
+                                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                        children: [
+                                                                          Icon(isLunchtimeTakenExpandedList[index] ?Icons.check_circle_outline_rounded:Icons.close_rounded, color:isLunchtimeTakenExpandedList[index] ? Colors.white : Colors.green),
+                                                                          Text(
+                                                                              'Taken',
+                                                                              style:
+                                                                              TextStyle(color: isLunchtimeTakenExpandedList[index] ? Colors.white : Colors.green)),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              SizedBox(
+                                                                height: 10,
+                                                              ),
+                                                              Container(
+                                                                width: double
+                                                                    .infinity,
+                                                                color: Colors
+                                                                    .black12,
+                                                                child: Center(
+                                                                  child: Text(
+                                                                    "${mMedication.data!.morning![index].previousNote}",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            14,
+                                                                        color: Colors
+                                                                            .black38),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              SizedBox(
+                                                                  height: 10),
+                                                              Visibility(
+                                                                visible:
+                                                                    isLunchtimeNotTakenExpandedList[
+                                                                        index],
+                                                                child: Column(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    SizedBox(
+                                                                      height:
+                                                                          20,
+                                                                    ),
+                                                                    Text(
+                                                                      'Notes (mandatory)',
+                                                                      style: TextStyle(
+                                                                          fontWeight: FontWeight
+                                                                              .normal,
+                                                                          fontSize:
+                                                                              20),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            15),
+                                                                    TextField(
+                                                                      maxLines:
+                                                                          2,
+                                                                      controller:
+                                                                          controllerNotTaken,
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                        filled:
+                                                                            true,
+                                                                        fillColor:
+                                                                            Colors.white,
+                                                                        hintText:
+                                                                            '',
+                                                                        border:
+                                                                            OutlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(color: Colors.black),
+                                                                        ),
+                                                                        focusedBorder:
+                                                                            OutlineInputBorder(
+                                                                          borderSide: BorderSide(
+                                                                              width: 1,
+                                                                              color: Colors.grey),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            50),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              Visibility(
+                                                                visible:
+                                                                    isLunchtimeTakenExpandedList[
+                                                                        index],
+                                                                child: Column(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    SizedBox(
+                                                                      height:
+                                                                          20,
+                                                                    ),
+                                                                    Text(
+                                                                      'Notes (optional)',
+                                                                      style: TextStyle(
+                                                                          fontWeight: FontWeight
+                                                                              .normal,
+                                                                          fontSize:
+                                                                              20),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            15),
+                                                                    TextField(
+                                                                      maxLines:
+                                                                          2,
+                                                                      controller:
+                                                                          controllerTaken,
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                        filled:
+                                                                            true,
+                                                                        fillColor:
+                                                                            Colors.white,
+                                                                        hintText:
+                                                                            '',
+                                                                        border:
+                                                                            OutlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(color: Colors.black),
+                                                                        ),
+                                                                        focusedBorder:
+                                                                            OutlineInputBorder(
+                                                                          borderSide: BorderSide(
+                                                                              width: 1,
+                                                                              color: Colors.grey),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            50),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                //**Lunchtime
+
+                                //**Evening
+                              ],
+                            ),
+                            //Evening
                             Column(
                               children: [
                                 Padding(
@@ -471,29 +906,34 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Icon(Icons.wb_twighlight),
+                                                    Icon(Icons.wb_twighlight,color: mMedication.data!.evening!.length==0?Colors.grey:Colors.black),
                                                     Text(
                                                       "Evening",
                                                       style: TextStyle(
                                                           fontSize: 20,
                                                           fontWeight:
-                                                              FontWeight.bold),
+                                                              FontWeight.bold,color: mMedication.data!.evening!.length==0?Colors.grey:Colors.black),
                                                     ),
                                                     Text(
-                                                      "${mMedication.data!.evening!.length}"+" meds",
+                                                      "${mMedication.data!.evening!.length == 0 ? "No" : "${mMedication.data!.evening!.length}"}" +
+                                                          " meds",
                                                       style: TextStyle(
                                                           fontSize: 20,
                                                           color: Colors.grey),
                                                     ),
-                                                    Icon(
+                                                    mMedication.data!.evening!
+                                                        .length !=
+                                                        0
+                                                        ? Icon(
                                                       _isEvening
                                                           ? Icons
-                                                              .keyboard_arrow_up
+                                                          .keyboard_arrow_up
                                                           : Icons
-                                                              .keyboard_arrow_down_sharp,
+                                                          .keyboard_arrow_down_sharp,
                                                       size: 30,
                                                       color: kDC3Color,
                                                     )
+                                                        : SizedBox(width: 25),
                                                   ],
                                                 ),
                                               ),
@@ -503,243 +943,281 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
                                                   children: [
                                                     ListView.builder(
                                                       shrinkWrap: true,
-                                                        itemCount: mMedication.data!.evening!.length,
-                                                        physics: NeverScrollableScrollPhysics(),
-                                                        itemBuilder:
-                                                      (context,
-                                                          index) {
-                                                        // isNotTakenExpandedList[index] = !isNotTakenExpandedList[index];
-                                                        // isTakenExpandedList[index] = false;
-                                                    return Padding(
-                                                      padding: const EdgeInsets.all(8.0),
-                                                      child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            "${mMedication.data!.evening![index].medicationName}",
-                                                            style: TextStyle(
-                                                                fontSize:
-                                                                    20,
-                                                                fontWeight:
-                                                                    FontWeight.bold),
-                                                          ),
-                                                          Text(
-                                                            "${mMedication.data!.evening![index].dosage}",
-                                                            style: TextStyle(
-                                                                fontSize:
-                                                                    16),
-                                                          ),
-                                                          Row(
+                                                      itemCount: mMedication
+                                                          .data!
+                                                          .evening!
+                                                          .length,
+                                                      physics:
+                                                          NeverScrollableScrollPhysics(),
+                                                      itemBuilder:
+                                                          (context, index) {
+                                                        // isMorningNotTakenExpandedList[index] = !isMorningNotTakenExpandedList[index];
+                                                        // isMorningTakenExpandedList[index] = false;
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
                                                             children: [
                                                               Text(
-                                                                "${mMedication.data!.evening![index].note1}"+"${mMedication.data!.evening![index].note2}",
+                                                                "${mMedication.data!.evening![index].medicationName}",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        20,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                              Text(
+                                                                "${mMedication.data!.evening![index].dosage}",
                                                                 style: TextStyle(
                                                                     fontSize:
                                                                         16),
                                                               ),
-                                                            ],
-                                                          ),
-                                                          SizedBox(
-                                                              height:
-                                                                  10),
-                                                          Row(
-                                                            mainAxisAlignment:
+                                                              Row(
+                                                                children: [
+                                                                  Text(
+                                                                    "${mMedication.data!.evening![index].note1}" +
+                                                                        "${mMedication.data!.evening![index].note2}",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            16),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              SizedBox(
+                                                                  height: 10),
+                                                              Row(
+                                                                mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .spaceEvenly,
-                                                            children: [
-                                                              Container(
-                                                                width:
-                                                                    150,
-                                                                height:
-                                                                    50,
-                                                                child:
+                                                                children: [
+                                                                  Container(
+                                                                    width: 150,
+                                                                    height: 50,
+                                                                    child:
                                                                     ElevatedButton(
-                                                                  onPressed:
-                                                                      () {
-                                                                    setState(() {
-                                                                      isNotTakenExpandedList[index] = !isNotTakenExpandedList[index];
-                                                                      isTakenExpandedList[index] = false;
-                                                                    });
-                                                                  },
-                                                                  style:
-                                                                      ElevatedButton.styleFrom(
-                                                                    backgroundColor: isNotTakenExpandedList[index]
-                                                                        ? Colors.red
-                                                                        : Colors.white,
-                                                                    shape:
+                                                                      onPressed:
+                                                                          () {
+                                                                        setState(
+                                                                                () {
+                                                                              isEveningNotTakenExpandedList[index] =
+                                                                              !isEveningNotTakenExpandedList[index];
+                                                                              //isEveningNotTakenExpandedList[index] = true;
+                                                                              isEveningTakenExpandedList[index] =
+                                                                              false;
+                                                                            });
+                                                                      },
+                                                                      style: ElevatedButton
+                                                                          .styleFrom(
+                                                                        backgroundColor: isEveningNotTakenExpandedList[index]
+                                                                            ? Colors.red
+                                                                            : Colors.white,
+                                                                        shape:
                                                                         RoundedRectangleBorder(
-                                                                      borderRadius: BorderRadius.circular(20),
-                                                                      side: BorderSide(color: Colors.red),
+                                                                          borderRadius:
+                                                                          BorderRadius.circular(20),
+                                                                          side:
+                                                                          BorderSide(color: Colors.red),
+                                                                        ),
+                                                                      ),
+                                                                      child: Row(
+                                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                        children: [
+                                                                          Icon(isEveningNotTakenExpandedList[index] ?Icons.check_circle_outline_rounded:Icons.close_rounded, color:isEveningNotTakenExpandedList[index] ? Colors.white : Colors.red),
+                                                                          Text(
+                                                                              'Not taken',
+                                                                              style:
+                                                                              TextStyle(color: isEveningNotTakenExpandedList[index] ? Colors.white : Colors.red)),
+                                                                        ],
+                                                                      ),
                                                                     ),
                                                                   ),
+                                                                  SizedBox(
+                                                                      width: 0),
+                                                                  Container(
+                                                                    width: 150,
+                                                                    height: 50,
+                                                                    child:
+                                                                    ElevatedButton(
+                                                                      onPressed:
+                                                                          () {
+                                                                        setState(
+                                                                                () {
+                                                                              isEveningTakenExpandedList[index] =
+                                                                              !isEveningTakenExpandedList[index];
+                                                                              isEveningNotTakenExpandedList[index] =
+                                                                              false;
+                                                                            });
+                                                                      },
+                                                                      style: ElevatedButton
+                                                                          .styleFrom(
+                                                                        backgroundColor: isEveningTakenExpandedList[index]
+                                                                            ? Colors.green
+                                                                            : Colors.white,
+                                                                        shape:
+                                                                        RoundedRectangleBorder(
+                                                                          borderRadius:
+                                                                          BorderRadius.circular(20),
+                                                                          side:
+                                                                          BorderSide(color: isEveningTakenExpandedList[index] ? Colors.green : Colors.green),
+                                                                        ),
+                                                                      ),
+                                                                      child: Row(
+                                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                        children: [
+                                                                          Icon(isEveningTakenExpandedList[index] ?Icons.check_circle_outline_rounded:Icons.close_rounded, color:isEveningTakenExpandedList[index] ? Colors.white : Colors.green),
+                                                                          Text(
+                                                                              'Taken',
+                                                                              style:
+                                                                              TextStyle(color: isEveningTakenExpandedList[index] ? Colors.white : Colors.green)),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              SizedBox(
+                                                                height: 10,
+                                                              ),
+                                                              Container(
+                                                                width: double
+                                                                    .infinity,
+                                                                color: Colors
+                                                                    .black12,
+                                                                child: Center(
                                                                   child: Text(
-                                                                      'Not taken',
-                                                                      style: TextStyle(color: isNotTakenExpandedList[index] ? Colors.white : Colors.red)),
+                                                                    "${mMedication.data!.evening![index].previousNote}",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            14,
+                                                                        color: Colors
+                                                                            .black38),
+                                                                  ),
                                                                 ),
                                                               ),
                                                               SizedBox(
-                                                                  width:
-                                                                      0),
-                                                              Container(
-                                                                width:
-                                                                    150,
-                                                                height:
-                                                                    50,
-                                                                child:
-                                                                    ElevatedButton(
-                                                                  onPressed:
-                                                                      () {
-                                                                    setState(() {
-                                                                      isTakenExpandedList[index] = !isTakenExpandedList[index];
-                                                                      isNotTakenExpandedList[index] = false;
-                                                                    });
-                                                                  },
-                                                                  style:
-                                                                      ElevatedButton.styleFrom(
-                                                                    backgroundColor: isTakenExpandedList[index]
-                                                                        ? Colors.green
-                                                                        : Colors.white,
-                                                                    shape:
-                                                                        RoundedRectangleBorder(
-                                                                      borderRadius: BorderRadius.circular(20),
-                                                                      side: BorderSide(color: isTakenExpandedList[index] ? Colors.green : Colors.red),
+                                                                  height: 10),
+                                                              Visibility(
+                                                                visible:
+                                                                    isEveningNotTakenExpandedList[
+                                                                        index],
+                                                                child: Column(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    SizedBox(
+                                                                      height:
+                                                                          20,
                                                                     ),
-                                                                  ),
-                                                                  child: Text(
-                                                                      'Taken',
-                                                                      style: TextStyle(color: isTakenExpandedList[index] ? Colors.white : Colors.red)),
+                                                                    Text(
+                                                                      'Notes (mandatory)',
+                                                                      style: TextStyle(
+                                                                          fontWeight: FontWeight
+                                                                              .normal,
+                                                                          fontSize:
+                                                                              20),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            15),
+                                                                    TextField(
+                                                                      maxLines:
+                                                                          2,
+                                                                      controller:
+                                                                          controllerNotTaken,
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                        filled:
+                                                                            true,
+                                                                        fillColor:
+                                                                            Colors.white,
+                                                                        hintText:
+                                                                            '',
+                                                                        border:
+                                                                            OutlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(color: Colors.black),
+                                                                        ),
+                                                                        focusedBorder:
+                                                                            OutlineInputBorder(
+                                                                          borderSide: BorderSide(
+                                                                              width: 1,
+                                                                              color: Colors.grey),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            50),
+                                                                  ],
                                                                 ),
-
+                                                              ),
+                                                              Visibility(
+                                                                visible:
+                                                                    isEveningTakenExpandedList[
+                                                                        index],
+                                                                child: Column(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    SizedBox(
+                                                                      height:
+                                                                          20,
+                                                                    ),
+                                                                    Text(
+                                                                      'Notes (optional)',
+                                                                      style: TextStyle(
+                                                                          fontWeight: FontWeight
+                                                                              .normal,
+                                                                          fontSize:
+                                                                              20),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            15),
+                                                                    TextField(
+                                                                      maxLines:
+                                                                          2,
+                                                                      controller:
+                                                                          controllerTaken,
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                        filled:
+                                                                            true,
+                                                                        fillColor:
+                                                                            Colors.white,
+                                                                        hintText:
+                                                                            '',
+                                                                        border:
+                                                                            OutlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(color: Colors.black),
+                                                                        ),
+                                                                        focusedBorder:
+                                                                            OutlineInputBorder(
+                                                                          borderSide: BorderSide(
+                                                                              width: 1,
+                                                                              color: Colors.grey),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            50),
+                                                                  ],
+                                                                ),
                                                               ),
                                                             ],
                                                           ),
-                                                          SizedBox(height: 10,),
-                                                          Container(
-                                                            width: double.infinity,
-                                                            color: Colors.black12,
-                                                            child: Center(
-                                                              child: Text(
-                                                                "${mMedication.data!.evening![index].previousNote}",
-                                                                style: TextStyle(
-                                                                    fontSize: 14,
-                                                                    color: Colors
-                                                                        .black38),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          SizedBox(
-                                                              height:
-                                                                  10),
-                                                          Visibility(
-                                                            visible:
-                                                                isNotTakenExpandedList[index],
-                                                            child:
-                                                                Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                SizedBox(
-                                                                  height:
-                                                                      20,
-                                                                ),
-                                                                Text(
-                                                                  'Notes (mandatory)',
-                                                                  style: TextStyle(
-                                                                      fontWeight: FontWeight.normal,
-                                                                      fontSize: 20),
-                                                                ),
-                                                                SizedBox(
-                                                                    height:
-                                                                        15),
-                                                                TextField(
-                                                                  maxLines:
-                                                                      2,
-                                                                  controller:
-                                                                      controllerNotTaken,
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    filled:
-                                                                        true,
-                                                                    fillColor:
-                                                                        Colors.white,
-                                                                    hintText:
-                                                                        '',
-                                                                    border:
-                                                                        OutlineInputBorder(
-                                                                      borderSide: BorderSide(color: Colors.black),
-                                                                    ),
-                                                                    focusedBorder:
-                                                                        OutlineInputBorder(
-                                                                      borderSide: BorderSide(width: 1, color: Colors.grey),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                SizedBox(
-                                                                    height:
-                                                                        50),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Visibility(
-                                                            visible:
-                                                                isTakenExpandedList[index],
-                                                            child:
-                                                                Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                SizedBox(
-                                                                  height:
-                                                                      20,
-                                                                ),
-                                                                Text(
-                                                                  'Notes (optional)',
-                                                                  style: TextStyle(
-                                                                      fontWeight: FontWeight.normal,
-                                                                      fontSize: 20),
-                                                                ),
-                                                                SizedBox(
-                                                                    height:
-                                                                        15),
-                                                                TextField(
-                                                                  maxLines:
-                                                                      2,
-                                                                  controller:
-                                                                      controllerTaken,
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    filled:
-                                                                        true,
-                                                                    fillColor:
-                                                                        Colors.white,
-                                                                    hintText:
-                                                                        '',
-                                                                    border:
-                                                                        OutlineInputBorder(
-                                                                      borderSide: BorderSide(color: Colors.black),
-                                                                    ),
-                                                                    focusedBorder:
-                                                                        OutlineInputBorder(
-                                                                      borderSide: BorderSide(width: 1, color: Colors.grey),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                SizedBox(
-                                                                    height:
-                                                                        50),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    );
-                                                        },
-                                                      ),
-
+                                                        );
+                                                      },
+                                                    ),
                                                   ],
                                                 ),
                                               ),
@@ -755,6 +1233,7 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
                                 //**Evening
                               ],
                             ),
+                            //Bedtime
                             Column(
                               children: [
                                 Padding(
@@ -775,7 +1254,7 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
                                     ),
                                     child: Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         GestureDetector(
                                           onTap: () {
@@ -788,27 +1267,31 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
                                             children: [
                                               Padding(
                                                 padding:
-                                                const EdgeInsets.all(8.0),
+                                                    const EdgeInsets.all(8.0),
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
-                                                    Icon(Icons.wb_twighlight),
+                                                    Icon(Icons.bedtime_rounded,color: mMedication.data!.bedTime!.length==0?Colors.grey:Colors.black),
                                                     Text(
                                                       "Bed time",
                                                       style: TextStyle(
                                                           fontSize: 20,
                                                           fontWeight:
-                                                          FontWeight.bold),
+                                                              FontWeight.bold,color: mMedication.data!.bedTime!.length==0?Colors.grey:Colors.black),
                                                     ),
                                                     Text(
-                                                      "${mMedication.data!.bedTime!.length}"+" meds",
+                                                      "${mMedication.data!.bedTime!.length == 0 ? "No" : "${mMedication.data!.bedTime!.length}"}" +
+                                                          " meds",
                                                       style: TextStyle(
                                                           fontSize: 20,
                                                           color: Colors.grey),
                                                     ),
-                                                    Icon(
+                                                    mMedication.data!.bedTime!
+                                                        .length !=
+                                                        0
+                                                        ? Icon(
                                                       _isBedTime
                                                           ? Icons
                                                           .keyboard_arrow_up
@@ -817,6 +1300,7 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
                                                       size: 30,
                                                       color: kDC3Color,
                                                     )
+                                                        : SizedBox(width: 25),
                                                   ],
                                                 ),
                                               ),
@@ -826,234 +1310,273 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
                                                   children: [
                                                     ListView.builder(
                                                       shrinkWrap: true,
-                                                      itemCount: mMedication.data!.bedTime!.length,
-                                                      physics: NeverScrollableScrollPhysics(),
+                                                      itemCount: mMedication
+                                                          .data!
+                                                          .bedTime!
+                                                          .length,
+                                                      physics:
+                                                          NeverScrollableScrollPhysics(),
                                                       itemBuilder:
-                                                          (context,
-                                                          index) {
-                                                        // isNotTakenExpandedList[index] = !isNotTakenExpandedList[index];
-                                                        // isTakenExpandedList[index] = false;
+                                                          (context, index) {
+                                                        // isEveningNotTakenExpandedList[index] = !isEveningNotTakenExpandedList[index];
+                                                        // isEveningTakenExpandedList[index] = false;
                                                         return Padding(
-                                                          padding: const EdgeInsets.all(8.0),
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
                                                           child: Column(
                                                             crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                                CrossAxisAlignment
+                                                                    .start,
                                                             children: [
                                                               Text(
                                                                 "${mMedication.data!.bedTime![index].medicationName}",
                                                                 style: TextStyle(
                                                                     fontSize:
-                                                                    20,
+                                                                        20,
                                                                     fontWeight:
-                                                                    FontWeight.bold),
+                                                                        FontWeight
+                                                                            .bold),
                                                               ),
                                                               Text(
                                                                 "${mMedication.data!.bedTime![index].dosage}",
                                                                 style: TextStyle(
                                                                     fontSize:
-                                                                    16),
+                                                                        16),
                                                               ),
                                                               Row(
                                                                 children: [
                                                                   Text(
-                                                                    "${mMedication.data!.bedTime![index].note1}"+"${mMedication.data!.bedTime![index].note2}",
+                                                                    "${mMedication.data!.bedTime![index].note1}" +
+                                                                        "${mMedication.data!.bedTime![index].note2}",
                                                                     style: TextStyle(
                                                                         fontSize:
-                                                                        16),
+                                                                            16),
                                                                   ),
                                                                 ],
                                                               ),
                                                               SizedBox(
-                                                                  height:
-                                                                  10),
+                                                                  height: 10),
                                                               Row(
                                                                 mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .spaceEvenly,
                                                                 children: [
                                                                   Container(
-                                                                    width:
-                                                                    150,
-                                                                    height:
-                                                                    50,
+                                                                    width: 150,
+                                                                    height: 50,
                                                                     child:
                                                                     ElevatedButton(
                                                                       onPressed:
                                                                           () {
-                                                                        setState(() {
-                                                                          isNotTakenExpandedList[index] = !isNotTakenExpandedList[index];
-                                                                          isTakenExpandedList[index] = false;
-                                                                        });
+                                                                        setState(
+                                                                                () {
+                                                                              isBedtimeNotTakenExpandedList[index] =
+                                                                              !isBedtimeNotTakenExpandedList[index];
+                                                                              //isBedtimeNotTakenExpandedList[index] = true;
+                                                                              isBedtimeTakenExpandedList[index] =
+                                                                              false;
+                                                                            });
                                                                       },
-                                                                      style:
-                                                                      ElevatedButton.styleFrom(
-                                                                        backgroundColor: isNotTakenExpandedList[index]
+                                                                      style: ElevatedButton
+                                                                          .styleFrom(
+                                                                        backgroundColor: isBedtimeNotTakenExpandedList[index]
                                                                             ? Colors.red
                                                                             : Colors.white,
                                                                         shape:
                                                                         RoundedRectangleBorder(
-                                                                          borderRadius: BorderRadius.circular(20),
-                                                                          side: BorderSide(color: Colors.red),
+                                                                          borderRadius:
+                                                                          BorderRadius.circular(20),
+                                                                          side:
+                                                                          BorderSide(color: Colors.red),
                                                                         ),
                                                                       ),
-                                                                      child: Text(
-                                                                          'Not taken',
-                                                                          style: TextStyle(color: isNotTakenExpandedList[index] ? Colors.white : Colors.red)),
+                                                                      child: Row(
+                                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                        children: [
+                                                                          Icon(isBedtimeNotTakenExpandedList[index] ?Icons.check_circle_outline_rounded:Icons.close_rounded, color:isBedtimeNotTakenExpandedList[index] ? Colors.white : Colors.red),
+                                                                          Text(
+                                                                              'Not taken',
+                                                                              style:
+                                                                              TextStyle(color: isBedtimeNotTakenExpandedList[index] ? Colors.white : Colors.red)),
+                                                                        ],
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                   SizedBox(
-                                                                      width:
-                                                                      0),
+                                                                      width: 0),
                                                                   Container(
-                                                                    width:
-                                                                    150,
-                                                                    height:
-                                                                    50,
+                                                                    width: 150,
+                                                                    height: 50,
                                                                     child:
                                                                     ElevatedButton(
                                                                       onPressed:
                                                                           () {
-                                                                        setState(() {
-                                                                          isTakenExpandedList[index] = !isTakenExpandedList[index];
-                                                                          isNotTakenExpandedList[index] = false;
-                                                                        });
+                                                                        setState(
+                                                                                () {
+                                                                              isBedtimeTakenExpandedList[index] =
+                                                                              !isBedtimeTakenExpandedList[index];
+                                                                              isBedtimeNotTakenExpandedList[index] =
+                                                                              false;
+                                                                            });
                                                                       },
-                                                                      style:
-                                                                      ElevatedButton.styleFrom(
-                                                                        backgroundColor: isTakenExpandedList[index]
+                                                                      style: ElevatedButton
+                                                                          .styleFrom(
+                                                                        backgroundColor: isBedtimeTakenExpandedList[index]
                                                                             ? Colors.green
                                                                             : Colors.white,
                                                                         shape:
                                                                         RoundedRectangleBorder(
-                                                                          borderRadius: BorderRadius.circular(20),
-                                                                          side: BorderSide(color: isTakenExpandedList[index] ? Colors.green : Colors.red),
+                                                                          borderRadius:
+                                                                          BorderRadius.circular(20),
+                                                                          side:
+                                                                          BorderSide(color: isBedtimeTakenExpandedList[index] ? Colors.green : Colors.green),
                                                                         ),
                                                                       ),
-                                                                      child: Text(
-                                                                          'Taken',
-                                                                          style: TextStyle(color: isTakenExpandedList[index] ? Colors.white : Colors.red)),
+                                                                      child: Row(
+                                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                        children: [
+                                                                          Icon(isBedtimeTakenExpandedList[index] ?Icons.check_circle_outline_rounded:Icons.close_rounded, color:isBedtimeTakenExpandedList[index] ? Colors.white : Colors.green),
+                                                                          Text(
+                                                                              'Taken',
+                                                                              style:
+                                                                              TextStyle(color: isBedtimeTakenExpandedList[index] ? Colors.white : Colors.green)),
+                                                                        ],
+                                                                      ),
                                                                     ),
-
                                                                   ),
                                                                 ],
                                                               ),
-                                                              SizedBox(height: 10,),
+                                                              SizedBox(
+                                                                height: 10,
+                                                              ),
                                                               Container(
-                                                                width: double.infinity,
-                                                                color: Colors.black12,
+                                                                width: double
+                                                                    .infinity,
+                                                                color: Colors
+                                                                    .black12,
                                                                 child: Center(
                                                                   child: Text(
                                                                     "${mMedication.data!.bedTime![index].previousNote}",
                                                                     style: TextStyle(
-                                                                        fontSize: 14,
+                                                                        fontSize:
+                                                                            14,
                                                                         color: Colors
                                                                             .black38),
                                                                   ),
                                                                 ),
                                                               ),
                                                               SizedBox(
-                                                                  height:
-                                                                  10),
+                                                                  height: 10),
                                                               Visibility(
                                                                 visible:
-                                                                isNotTakenExpandedList[index],
-                                                                child:
-                                                                Column(
+                                                                    isBedtimeNotTakenExpandedList[
+                                                                        index],
+                                                                child: Column(
                                                                   crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
+                                                                      CrossAxisAlignment
+                                                                          .start,
                                                                   children: [
                                                                     SizedBox(
                                                                       height:
-                                                                      20,
+                                                                          20,
                                                                     ),
                                                                     Text(
                                                                       'Notes (mandatory)',
                                                                       style: TextStyle(
-                                                                          fontWeight: FontWeight.normal,
-                                                                          fontSize: 20),
+                                                                          fontWeight: FontWeight
+                                                                              .normal,
+                                                                          fontSize:
+                                                                              20),
                                                                     ),
                                                                     SizedBox(
                                                                         height:
-                                                                        15),
+                                                                            15),
                                                                     TextField(
                                                                       maxLines:
-                                                                      2,
+                                                                          2,
                                                                       controller:
-                                                                      controllerNotTaken,
+                                                                          controllerNotTaken,
                                                                       decoration:
-                                                                      InputDecoration(
+                                                                          InputDecoration(
                                                                         filled:
-                                                                        true,
+                                                                            true,
                                                                         fillColor:
-                                                                        Colors.white,
+                                                                            Colors.white,
                                                                         hintText:
-                                                                        '',
+                                                                            '',
                                                                         border:
-                                                                        OutlineInputBorder(
-                                                                          borderSide: BorderSide(color: Colors.black),
+                                                                            OutlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(color: Colors.black),
                                                                         ),
                                                                         focusedBorder:
-                                                                        OutlineInputBorder(
-                                                                          borderSide: BorderSide(width: 1, color: Colors.grey),
+                                                                            OutlineInputBorder(
+                                                                          borderSide: BorderSide(
+                                                                              width: 1,
+                                                                              color: Colors.grey),
                                                                         ),
                                                                       ),
                                                                     ),
                                                                     SizedBox(
                                                                         height:
-                                                                        50),
+                                                                            50),
                                                                   ],
                                                                 ),
                                                               ),
                                                               Visibility(
                                                                 visible:
-                                                                isTakenExpandedList[index],
-                                                                child:
-                                                                Column(
+                                                                    isBedtimeTakenExpandedList[
+                                                                        index],
+                                                                child: Column(
                                                                   crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
+                                                                      CrossAxisAlignment
+                                                                          .start,
                                                                   children: [
                                                                     SizedBox(
                                                                       height:
-                                                                      20,
+                                                                          20,
                                                                     ),
                                                                     Text(
                                                                       'Notes (optional)',
                                                                       style: TextStyle(
-                                                                          fontWeight: FontWeight.normal,
-                                                                          fontSize: 20),
+                                                                          fontWeight: FontWeight
+                                                                              .normal,
+                                                                          fontSize:
+                                                                              20),
                                                                     ),
                                                                     SizedBox(
                                                                         height:
-                                                                        15),
+                                                                            15),
                                                                     TextField(
                                                                       maxLines:
-                                                                      2,
+                                                                          2,
                                                                       controller:
-                                                                      controllerTaken,
+                                                                          controllerTaken,
                                                                       decoration:
-                                                                      InputDecoration(
+                                                                          InputDecoration(
                                                                         filled:
-                                                                        true,
+                                                                            true,
                                                                         fillColor:
-                                                                        Colors.white,
+                                                                            Colors.white,
                                                                         hintText:
-                                                                        '',
+                                                                            '',
                                                                         border:
-                                                                        OutlineInputBorder(
-                                                                          borderSide: BorderSide(color: Colors.black),
+                                                                            OutlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(color: Colors.black),
                                                                         ),
                                                                         focusedBorder:
-                                                                        OutlineInputBorder(
-                                                                          borderSide: BorderSide(width: 1, color: Colors.grey),
+                                                                            OutlineInputBorder(
+                                                                          borderSide: BorderSide(
+                                                                              width: 1,
+                                                                              color: Colors.grey),
                                                                         ),
                                                                       ),
                                                                     ),
                                                                     SizedBox(
                                                                         height:
-                                                                        50),
+                                                                            50),
                                                                   ],
                                                                 ),
                                                               ),
@@ -1062,7 +1585,6 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
                                                         );
                                                       },
                                                     ),
-
                                                   ],
                                                 ),
                                               ),
@@ -1078,6 +1600,7 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
                                 //**Evening
                               ],
                             ),
+                            //asneeded
                             Column(
                               children: [
                                 Padding(
@@ -1098,7 +1621,7 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
                                     ),
                                     child: Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         GestureDetector(
                                           onTap: () {
@@ -1111,27 +1634,31 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
                                             children: [
                                               Padding(
                                                 padding:
-                                                const EdgeInsets.all(8.0),
+                                                    const EdgeInsets.all(8.0),
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
-                                                    Icon(Icons.wb_twighlight),
+                                                    Icon(Icons.schedule_rounded,color: mMedication.data!.asNeeded!.length==0?Colors.grey:Colors.black),
                                                     Text(
                                                       "As needed",
                                                       style: TextStyle(
                                                           fontSize: 20,
                                                           fontWeight:
-                                                          FontWeight.bold),
+                                                              FontWeight.bold,color: mMedication.data!.asNeeded!.length==0?Colors.grey:Colors.black),
                                                     ),
                                                     Text(
-                                                      "${mMedication.data!.asNeeded!.length}"+" meds",
+                                                      "${mMedication.data!.asNeeded!.length == 0 ? "No" : "${mMedication.data!.asNeeded!.length}"}" +
+                                                          " meds",
                                                       style: TextStyle(
                                                           fontSize: 20,
                                                           color: Colors.grey),
                                                     ),
-                                                    Icon(
+                                                    mMedication.data!.asNeeded!
+                                                        .length !=
+                                                        0
+                                                        ? Icon(
                                                       _isAsNeeded
                                                           ? Icons
                                                           .keyboard_arrow_up
@@ -1140,6 +1667,7 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
                                                       size: 30,
                                                       color: kDC3Color,
                                                     )
+                                                        : SizedBox(width: 25),
                                                   ],
                                                 ),
                                               ),
@@ -1149,234 +1677,273 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
                                                   children: [
                                                     ListView.builder(
                                                       shrinkWrap: true,
-                                                      itemCount: mMedication.data!.asNeeded!.length,
-                                                      physics: NeverScrollableScrollPhysics(),
+                                                      itemCount: mMedication
+                                                          .data!
+                                                          .asNeeded!
+                                                          .length,
+                                                      physics:
+                                                          NeverScrollableScrollPhysics(),
                                                       itemBuilder:
-                                                          (context,
-                                                          index) {
-                                                        // isNotTakenExpandedList[index] = !isNotTakenExpandedList[index];
-                                                        // isTakenExpandedList[index] = false;
+                                                          (context, index) {
+                                                        // isBedtimeNotTakenExpandedList[index] = !isBedtimeNotTakenExpandedList[index];
+                                                        // isBedtimeTakenExpandedList[index] = false;
                                                         return Padding(
-                                                          padding: const EdgeInsets.all(8.0),
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
                                                           child: Column(
                                                             crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                                CrossAxisAlignment
+                                                                    .start,
                                                             children: [
                                                               Text(
                                                                 "${mMedication.data!.asNeeded![index].medicationName}",
                                                                 style: TextStyle(
                                                                     fontSize:
-                                                                    20,
+                                                                        20,
                                                                     fontWeight:
-                                                                    FontWeight.bold),
+                                                                        FontWeight
+                                                                            .bold),
                                                               ),
                                                               Text(
                                                                 "${mMedication.data!.asNeeded![index].dosage}",
                                                                 style: TextStyle(
                                                                     fontSize:
-                                                                    16),
+                                                                        16),
                                                               ),
                                                               Row(
                                                                 children: [
                                                                   Text(
-                                                                    "${mMedication.data!.asNeeded![index].note1}"+"${mMedication.data!.asNeeded![index].note2}",
+                                                                    "${mMedication.data!.asNeeded![index].note1}" +
+                                                                        "${mMedication.data!.asNeeded![index].note2}",
                                                                     style: TextStyle(
                                                                         fontSize:
-                                                                        16),
+                                                                            16),
                                                                   ),
                                                                 ],
                                                               ),
                                                               SizedBox(
-                                                                  height:
-                                                                  10),
+                                                                  height: 10),
                                                               Row(
                                                                 mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .spaceEvenly,
                                                                 children: [
                                                                   Container(
-                                                                    width:
-                                                                    150,
-                                                                    height:
-                                                                    50,
+                                                                    width: 150,
+                                                                    height: 50,
                                                                     child:
                                                                     ElevatedButton(
                                                                       onPressed:
                                                                           () {
-                                                                        setState(() {
-                                                                          isNotTakenExpandedList[index] = !isNotTakenExpandedList[index];
-                                                                          isTakenExpandedList[index] = false;
-                                                                        });
+                                                                        setState(
+                                                                                () {
+                                                                              isAsneededNotTakenExpandedList[index] =
+                                                                              !isAsneededNotTakenExpandedList[index];
+                                                                              //isAsneededNotTakenExpandedList[index] = true;
+                                                                              isAsneededTakenExpandedList[index] =
+                                                                              false;
+                                                                            });
                                                                       },
-                                                                      style:
-                                                                      ElevatedButton.styleFrom(
-                                                                        backgroundColor: isNotTakenExpandedList[index]
+                                                                      style: ElevatedButton
+                                                                          .styleFrom(
+                                                                        backgroundColor: isAsneededNotTakenExpandedList[index]
                                                                             ? Colors.red
                                                                             : Colors.white,
                                                                         shape:
                                                                         RoundedRectangleBorder(
-                                                                          borderRadius: BorderRadius.circular(20),
-                                                                          side: BorderSide(color: Colors.red),
+                                                                          borderRadius:
+                                                                          BorderRadius.circular(20),
+                                                                          side:
+                                                                          BorderSide(color: Colors.red),
                                                                         ),
                                                                       ),
-                                                                      child: Text(
-                                                                          'Not taken',
-                                                                          style: TextStyle(color: isNotTakenExpandedList[index] ? Colors.white : Colors.red)),
+                                                                      child: Row(
+                                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                        children: [
+                                                                          Icon(isAsneededNotTakenExpandedList[index] ?Icons.check_circle_outline_rounded:Icons.close_rounded, color:isAsneededNotTakenExpandedList[index] ? Colors.white : Colors.red),
+                                                                          Text(
+                                                                              'Not taken',
+                                                                              style:
+                                                                              TextStyle(color: isAsneededNotTakenExpandedList[index] ? Colors.white : Colors.red)),
+                                                                        ],
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                   SizedBox(
-                                                                      width:
-                                                                      0),
+                                                                      width: 0),
                                                                   Container(
-                                                                    width:
-                                                                    150,
-                                                                    height:
-                                                                    50,
+                                                                    width: 150,
+                                                                    height: 50,
                                                                     child:
                                                                     ElevatedButton(
                                                                       onPressed:
                                                                           () {
-                                                                        setState(() {
-                                                                          isTakenExpandedList[index] = !isTakenExpandedList[index];
-                                                                          isNotTakenExpandedList[index] = false;
-                                                                        });
+                                                                        setState(
+                                                                                () {
+                                                                              isAsneededTakenExpandedList[index] =
+                                                                              !isAsneededTakenExpandedList[index];
+                                                                              isAsneededNotTakenExpandedList[index] =
+                                                                              false;
+                                                                            });
                                                                       },
-                                                                      style:
-                                                                      ElevatedButton.styleFrom(
-                                                                        backgroundColor: isTakenExpandedList[index]
+                                                                      style: ElevatedButton
+                                                                          .styleFrom(
+                                                                        backgroundColor: isAsneededTakenExpandedList[index]
                                                                             ? Colors.green
                                                                             : Colors.white,
                                                                         shape:
                                                                         RoundedRectangleBorder(
-                                                                          borderRadius: BorderRadius.circular(20),
-                                                                          side: BorderSide(color: isTakenExpandedList[index] ? Colors.green : Colors.red),
+                                                                          borderRadius:
+                                                                          BorderRadius.circular(20),
+                                                                          side:
+                                                                          BorderSide(color: isAsneededTakenExpandedList[index] ? Colors.green : Colors.green),
                                                                         ),
                                                                       ),
-                                                                      child: Text(
-                                                                          'Taken',
-                                                                          style: TextStyle(color: isTakenExpandedList[index] ? Colors.white : Colors.red)),
+                                                                      child: Row(
+                                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                        children: [
+                                                                          Icon(isAsneededTakenExpandedList[index] ?Icons.check_circle_outline_rounded:Icons.close_rounded, color:isAsneededTakenExpandedList[index] ? Colors.white : Colors.green),
+                                                                          Text(
+                                                                              'Taken',
+                                                                              style:
+                                                                              TextStyle(color: isAsneededTakenExpandedList[index] ? Colors.white : Colors.green)),
+                                                                        ],
+                                                                      ),
                                                                     ),
-
                                                                   ),
                                                                 ],
                                                               ),
-                                                              SizedBox(height: 10,),
+                                                              SizedBox(
+                                                                height: 10,
+                                                              ),
                                                               Container(
-                                                                width: double.infinity,
-                                                                color: Colors.black12,
+                                                                width: double
+                                                                    .infinity,
+                                                                color: Colors
+                                                                    .black12,
                                                                 child: Center(
                                                                   child: Text(
                                                                     "${mMedication.data!.asNeeded![index].previousNote}",
                                                                     style: TextStyle(
-                                                                        fontSize: 14,
+                                                                        fontSize:
+                                                                            14,
                                                                         color: Colors
                                                                             .black38),
                                                                   ),
                                                                 ),
                                                               ),
                                                               SizedBox(
-                                                                  height:
-                                                                  10),
+                                                                  height: 10),
                                                               Visibility(
                                                                 visible:
-                                                                isNotTakenExpandedList[index],
-                                                                child:
-                                                                Column(
+                                                                    isAsneededNotTakenExpandedList[
+                                                                        index],
+                                                                child: Column(
                                                                   crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
+                                                                      CrossAxisAlignment
+                                                                          .start,
                                                                   children: [
                                                                     SizedBox(
                                                                       height:
-                                                                      20,
+                                                                          20,
                                                                     ),
                                                                     Text(
                                                                       'Notes (mandatory)',
                                                                       style: TextStyle(
-                                                                          fontWeight: FontWeight.normal,
-                                                                          fontSize: 20),
+                                                                          fontWeight: FontWeight
+                                                                              .normal,
+                                                                          fontSize:
+                                                                              20),
                                                                     ),
                                                                     SizedBox(
                                                                         height:
-                                                                        15),
+                                                                            15),
                                                                     TextField(
                                                                       maxLines:
-                                                                      2,
+                                                                          2,
                                                                       controller:
-                                                                      controllerNotTaken,
+                                                                          controllerNotTaken,
                                                                       decoration:
-                                                                      InputDecoration(
+                                                                          InputDecoration(
                                                                         filled:
-                                                                        true,
+                                                                            true,
                                                                         fillColor:
-                                                                        Colors.white,
+                                                                            Colors.white,
                                                                         hintText:
-                                                                        '',
+                                                                            '',
                                                                         border:
-                                                                        OutlineInputBorder(
-                                                                          borderSide: BorderSide(color: Colors.black),
+                                                                            OutlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(color: Colors.black),
                                                                         ),
                                                                         focusedBorder:
-                                                                        OutlineInputBorder(
-                                                                          borderSide: BorderSide(width: 1, color: Colors.grey),
+                                                                            OutlineInputBorder(
+                                                                          borderSide: BorderSide(
+                                                                              width: 1,
+                                                                              color: Colors.grey),
                                                                         ),
                                                                       ),
                                                                     ),
                                                                     SizedBox(
                                                                         height:
-                                                                        50),
+                                                                            50),
                                                                   ],
                                                                 ),
                                                               ),
                                                               Visibility(
                                                                 visible:
-                                                                isTakenExpandedList[index],
-                                                                child:
-                                                                Column(
+                                                                    isAsneededTakenExpandedList[
+                                                                        index],
+                                                                child: Column(
                                                                   crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
+                                                                      CrossAxisAlignment
+                                                                          .start,
                                                                   children: [
                                                                     SizedBox(
                                                                       height:
-                                                                      20,
+                                                                          20,
                                                                     ),
                                                                     Text(
                                                                       'Notes (optional)',
                                                                       style: TextStyle(
-                                                                          fontWeight: FontWeight.normal,
-                                                                          fontSize: 20),
+                                                                          fontWeight: FontWeight
+                                                                              .normal,
+                                                                          fontSize:
+                                                                              20),
                                                                     ),
                                                                     SizedBox(
                                                                         height:
-                                                                        15),
+                                                                            15),
                                                                     TextField(
                                                                       maxLines:
-                                                                      2,
+                                                                          2,
                                                                       controller:
-                                                                      controllerTaken,
+                                                                          controllerTaken,
                                                                       decoration:
-                                                                      InputDecoration(
+                                                                          InputDecoration(
                                                                         filled:
-                                                                        true,
+                                                                            true,
                                                                         fillColor:
-                                                                        Colors.white,
+                                                                            Colors.white,
                                                                         hintText:
-                                                                        '',
+                                                                            '',
                                                                         border:
-                                                                        OutlineInputBorder(
-                                                                          borderSide: BorderSide(color: Colors.black),
+                                                                            OutlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(color: Colors.black),
                                                                         ),
                                                                         focusedBorder:
-                                                                        OutlineInputBorder(
-                                                                          borderSide: BorderSide(width: 1, color: Colors.grey),
+                                                                            OutlineInputBorder(
+                                                                          borderSide: BorderSide(
+                                                                              width: 1,
+                                                                              color: Colors.grey),
                                                                         ),
                                                                       ),
                                                                     ),
                                                                     SizedBox(
                                                                         height:
-                                                                        50),
+                                                                            50),
                                                                   ],
                                                                 ),
                                                               ),
@@ -1385,7 +1952,6 @@ class _ClientDetailedReportPageState extends State<ClientDetailedReportPage> {
                                                         );
                                                       },
                                                     ),
-
                                                   ],
                                                 ),
                                               ),
